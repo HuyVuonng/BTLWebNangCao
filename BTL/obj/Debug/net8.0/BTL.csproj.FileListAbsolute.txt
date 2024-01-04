@@ -30,3 +30,4 @@ D:\CacKyHocDaiHoc\Chuyen_Nganh\LapTrinhWebNangCao\BTL\BTL\BTL\obj\Debug\net8.0\r
 D:\CacKyHocDaiHoc\Chuyen_Nganh\LapTrinhWebNangCao\BTL\BTL\BTL\obj\Debug\net8.0\BTL.pdb
 D:\CacKyHocDaiHoc\Chuyen_Nganh\LapTrinhWebNangCao\BTL\BTL\BTL\obj\Debug\net8.0\BTL.genruntimeconfig.cache
 D:\CacKyHocDaiHoc\Chuyen_Nganh\LapTrinhWebNangCao\BTL\BTL\BTL\obj\Debug\net8.0\ref\BTL.dll
+D:\CacKyHocDaiHoc\Chuyen_Nganh\LapTrinhWebNangCao\BTL\BTL\BTL\obj\Debug\net8.0\BTL.sourcelink.json
