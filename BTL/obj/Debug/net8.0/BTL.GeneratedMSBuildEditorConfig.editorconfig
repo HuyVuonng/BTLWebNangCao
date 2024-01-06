@@ -9,39 +9,39 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BTL
 build_property.RootNamespace = BTL
-build_property.ProjectDir = D:\CacKyHocDaiHoc\Chuyen_Nganh\LapTrinhWebNangCao\BTL\BTL\BTL\
+build_property.ProjectDir = D:\BTLWebNangCao\BTL\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\CacKyHocDaiHoc\Chuyen_Nganh\LapTrinhWebNangCao\BTL\BTL\BTL
+build_property.MSBuildProjectDirectory = D:\BTLWebNangCao\BTL
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/CacKyHocDaiHoc/Chuyen_Nganh/LapTrinhWebNangCao/BTL/BTL/BTL/Views/Home/Index.cshtml]
+[D:/BTLWebNangCao/BTL/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CacKyHocDaiHoc/Chuyen_Nganh/LapTrinhWebNangCao/BTL/BTL/BTL/Views/Home/Privacy.cshtml]
+[D:/BTLWebNangCao/BTL/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CacKyHocDaiHoc/Chuyen_Nganh/LapTrinhWebNangCao/BTL/BTL/BTL/Views/Shared/Error.cshtml]
+[D:/BTLWebNangCao/BTL/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CacKyHocDaiHoc/Chuyen_Nganh/LapTrinhWebNangCao/BTL/BTL/BTL/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/BTLWebNangCao/BTL/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CacKyHocDaiHoc/Chuyen_Nganh/LapTrinhWebNangCao/BTL/BTL/BTL/Views/_ViewImports.cshtml]
+[D:/BTLWebNangCao/BTL/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CacKyHocDaiHoc/Chuyen_Nganh/LapTrinhWebNangCao/BTL/BTL/BTL/Views/_ViewStart.cshtml]
+[D:/BTLWebNangCao/BTL/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/CacKyHocDaiHoc/Chuyen_Nganh/LapTrinhWebNangCao/BTL/BTL/BTL/Views/Shared/_Layout.cshtml]
+[D:/BTLWebNangCao/BTL/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-r300d95vn0

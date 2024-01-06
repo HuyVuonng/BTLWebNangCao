@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\BTL.csproj": {}
+    "D:\\BTLWebNangCao\\BTL\\BTL.csproj": {}
   },
   "projects": {
-    "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\BTL.csproj": {
+    "D:\\BTLWebNangCao\\BTL\\BTL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\BTL.csproj",
+        "projectUniqueName": "D:\\BTLWebNangCao\\BTL\\BTL.csproj",
         "projectName": "BTL",
-        "projectPath": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\BTL.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\obj\\",
+        "projectPath": "D:\\BTLWebNangCao\\BTL\\BTL.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "D:\\BTLWebNangCao\\BTL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
