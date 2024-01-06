@@ -166,7 +166,34 @@ BEGIN
           AND LOWER(w.sWord) LIKE LOWER(@word) + '%' and wt.Id= w.Id_wordtype;
 END;
 
-EXEC SearchWords  N'Nói', 2, 1
+EXEC SearchWords  N'N', 2, 1
+
+go
+CREATE PROCEDURE getForceWords
+     @word NVARCHAR(255),
+    @lang int,
+    @lang_trans int
+AS
+BEGIN
+    SELECT w.sWord, wt.sWordtype, w.sExample, w.sDefinition,w.Id
+   FROM tblWord w,  tblWord_type wt
+        WHERE @lang =w.Id_Language and @lang_trans= w.Id_Language_trans
+          AND LOWER(w.sWord) LIKE LOWER(@word) and wt.Id= w.Id_wordtype;
+END;
+
+EXEC getForceWords  N'Nói', 2, 1
+
+CREATE PROCEDURE getWordsByID
+     @wordID int
+AS
+BEGIN
+    SELECT w.sWord, wt.sWordtype, w.sExample, w.sDefinition,w.Id
+   FROM tblWord w,  tblWord_type wt
+        WHERE w.Id= @wordID and wt.Id= w.Id_wordtype;
+END;
+
+EXEC getWordsByID  49
+
 
 go
 CREATE PROCEDURE GetWordByUserIDAdd

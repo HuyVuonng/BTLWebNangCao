@@ -24,3 +24,8 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.lbdict_frame_view{
+    width: fit-content;
+}
