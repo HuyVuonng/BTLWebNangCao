@@ -1,0 +1,8 @@
+# ASP.NET Scaffolding
+bin/
+obj/
+# ...
+
+# BTL folder
+appsettings.json
+Program.cs
