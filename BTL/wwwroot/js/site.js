@@ -15,11 +15,11 @@ const phonetic = document.querySelector("#phonetic");
 
 const valueLanguages = [
   {
-    value: 1,
+    value: 2,
     lang: "Tiếng Việt",
   },
   {
-    value: 2,
+    value: 1,
     lang: "Tiếng Anh",
   },
 ];
@@ -27,18 +27,55 @@ let html = "";
 valueLanguages.forEach((e) => {
   html += `<option value=${e.value}>${e.lang}</option>`;
   selectLanguage.innerHTML = html;
-  if (e.value !== 1) {
+  if (e.value !== 2) {
     selectLanguageTran.innerHTML = `<option value=${e.value}>${e.lang}</option>`;
   }
 });
 
-const searchClick = async () => {
+const searchClick = () => {
   const wordSearch = searchInput.value;
   clear();
+  let result = [];
   // search Db
+  const dataSearch =
+    "Id_Language=" +
+    selectLanguage.value +
+    "&Id_Language_trans=" +
+    selectLanguageTran.value +
+    "&sWord=" +
+    wordSearch;
 
-  // search api Anh-Anh
-  if (selectLanguage.value === "2" && selectLanguageTran.value === "2") {
+  $.ajax({
+    type: "get",
+    url: "searchWord",
+    data: dataSearch,
+    success: function (data) {
+      result = data;
+      handleSearch(result);
+    },
+    error: function (e) {
+      aler(e);
+    },
+  });
+};
+
+const handleSearch = async (result) => {
+  if (result.length > 0) {
+    word.innerHTML = result[0].sWord;
+    if (selectLanguageTran.value === "1" && selectLanguage.value === "1") {
+      console.log("here");
+      result[0].sWordtype = result[0].sWordtype = "Danh từ"
+        ? "noun"
+        : (result[0].sWordtype = "Động từ")
+        ? "verb"
+        : (result[0].sWordtype = "Tính từ")
+        ? "adjective"
+        : "Adverb";
+    }
+    type.innerHTML = result[0].sWordtype;
+    definition.innerHTML = result[0].sDefinition;
+    example.innerHTML = result[0].sExample;
+  } else if (selectLanguage.value === "1" && selectLanguageTran.value === "1") {
     const res = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${wordSearch}`
     );
@@ -46,13 +83,52 @@ const searchClick = async () => {
       const data = await res.json();
       word.innerHTML = data[0].word;
       phonetic.innerHTML = data[0].phonetic ? data[0].phonetic : "";
-      type.innerHTML = data[0].meanings[0].partOfSpeech;
-      definition.innerHTML = data[0].meanings[0].definitions[0].definition;
+      type.innerHTML =
+        data[0].meanings[0]?.partOfSpeech ||
+        data[0].meanings[1]?.partOfSpeech ||
+        data[1].meanings[0]?.partOfSpeech;
+      definition.innerHTML =
+        data[0].meanings[0]?.definitions[0].definition ||
+        data[0].meanings[1]?.definitions[0].definition ||
+        data[1].meanings[0]?.definitions[0].definition;
       example.innerHTML =
-        data[0].meanings[0].definitions[0].example ||
-        data[0].meanings[0].definitions[1].example ||
+        data[0].meanings[0]?.definitions[0].example ||
+        data[0].meanings[1]?.definitions[0].example ||
+        data[0].meanings[1]?.definitions[1]?.example ||
+        data[1].meanings[0]?.definitions[0]?.example ||
         "";
       laban.classList.add("hidden");
+      const typeID =
+        type.innerHTML === "noun"
+          ? 2
+          : type.innerHTML === "verb"
+          ? 1
+          : type.innerHTML === "adjective"
+          ? 3
+          : 4;
+      const dataString =
+        "Id_Language=" +
+        1 +
+        "&Id_Language_trans=" +
+        1 +
+        "&Id_wordtype=" +
+        typeID +
+        "&Id_user=" +
+        1 +
+        "&sWord=" +
+        word.innerHTML +
+        "&sExample=" +
+        example.innerHTML +
+        "&sDefinition=" +
+        definition.innerHTML;
+      $.ajax({
+        type: "post",
+        url: "addNewWord",
+        data: dataString,
+        error: function ($e) {
+          aler($e);
+        },
+      });
     } else {
       laban.classList.remove("hidden");
     }
@@ -60,7 +136,6 @@ const searchClick = async () => {
     laban.classList.remove("hidden");
   }
 };
-
 const clear = () => {
   word.innerHTML =
     type.innerHTML =
@@ -76,8 +151,8 @@ searchBTN.addEventListener("click", searchClick);
 selectLanguage.addEventListener("change", () => {
   let html = "";
   clear();
-  if (selectLanguage.value === "1") {
-    const newValueLang = valueLanguages.filter((e) => e.value !== 1);
+  if (selectLanguage.value === "2") {
+    const newValueLang = valueLanguages.filter((e) => e.value !== 2);
     newValueLang.forEach((e) => {
       html += `<option value=${e.value}>${e.lang}</option>`;
 

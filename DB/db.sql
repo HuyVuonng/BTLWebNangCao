@@ -220,3 +220,15 @@ BEGIN
 END;
 
 exec getHistorySearchUser 1
+
+
+go
+alter proc addNewWord
+ @Id_Language int,@Id_Language_trans int, @Id_wordtype int, @Id_user int, @sWord NVARCHAR(255),@sExample NVARCHAR(255), @sDefinition NVARCHAR(255)  
+AS
+BEGIN
+   insert into tblWord(Id_Language, Id_Language_trans, Id_wordtype, Id_user, sWord, sExample, sDefinition)
+   values(@Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition)
+END;
+
+exec getHistorySearchUser 1
