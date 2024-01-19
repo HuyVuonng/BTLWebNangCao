@@ -3,6 +3,7 @@
 
 const searchInput = document.querySelector("#search-input");
 const searchBTN = document.querySelector("#search-button");
+const listSearch = document.querySelector("#list_search");
 const result = document.querySelector("#result");
 const word = document.querySelector("#word");
 const type = document.querySelector("#type");
@@ -53,8 +54,8 @@ const searchClick = () => {
       result = data;
       handleSearch(result);
     },
-    error: function (e) {
-      aler(e);
+    error: function (error) {
+      console.log(error);
     },
   });
 };
@@ -76,27 +77,28 @@ const handleSearch = async (result) => {
     definition.innerHTML = result[0].sDefinition;
     example.innerHTML = result[0].sExample;
   } else if (selectLanguage.value === "1" && selectLanguageTran.value === "1") {
+    const wordSearch = searchInput.value;
     const res = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${wordSearch}`
     );
     if (res.status === 200) {
       const data = await res.json();
       word.innerHTML = data[0].word;
-      phonetic.innerHTML = data[0].phonetic ? data[0].phonetic : "";
+      phonetic.innerHTML = data[0].phonetic ? data[0].phonetic : "none";
       type.innerHTML =
-        data[0].meanings[0]?.partOfSpeech ||
-        data[0].meanings[1]?.partOfSpeech ||
-        data[1].meanings[0]?.partOfSpeech;
+        data[0]?.meanings[0]?.partOfSpeech ||
+        data[0]?.meanings[1]?.partOfSpeech ||
+        data[1]?.meanings[0]?.partOfSpeech;
       definition.innerHTML =
-        data[0].meanings[0]?.definitions[0].definition ||
-        data[0].meanings[1]?.definitions[0].definition ||
-        data[1].meanings[0]?.definitions[0].definition;
+        data[0]?.meanings[0]?.definitions[0].definition ||
+        data[0]?.meanings[1]?.definitions[0].definition ||
+        data[1]?.meanings[0]?.definitions[0].definition;
       example.innerHTML =
-        data[0].meanings[0]?.definitions[0].example ||
-        data[0].meanings[1]?.definitions[0].example ||
-        data[0].meanings[1]?.definitions[1]?.example ||
-        data[1].meanings[0]?.definitions[0]?.example ||
-        "";
+        data[0]?.meanings[0]?.definitions[0].example ||
+        data[0]?.meanings[1]?.definitions[0].example ||
+        data[0]?.meanings[1]?.definitions[1]?.example ||
+        data[1]?.meanings[0]?.definitions[0]?.example ||
+        "none";
       laban.classList.add("hidden");
       const typeID =
         type.innerHTML === "noun"
@@ -126,7 +128,7 @@ const handleSearch = async (result) => {
         url: "addNewWord",
         data: dataString,
         error: function ($e) {
-          aler($e);
+          console.error($e);
         },
       });
     } else {
@@ -144,6 +146,64 @@ const clear = () => {
     phonetic.innerHTML =
       "";
   laban.classList.add("hidden");
+};
+
+const handlePreSearch = () => {
+  listSearch.innerHTML = "";
+  const dataSearch =
+    "Id_Language=" +
+    selectLanguage.value +
+    "&Id_Language_trans=" +
+    selectLanguageTran.value +
+    "&sWord=" +
+    searchInput.value;
+  $.ajax({
+    type: "get",
+    url: "preSearchWord",
+    data: dataSearch,
+    success: function (data) {
+      if (data.length > 0) {
+        let html = "";
+        data.forEach((result) => {
+          console.log(result);
+          html += `<div class='resultPreSearch w-full h-9 p-4' onclick="searchByResultSearch('${result.sWord}','${selectLanguage.value}','${selectLanguageTran.value}')">${result.sWord}</div>`;
+        });
+        listSearch.innerHTML = html;
+      } else {
+        listSearch.innerHTML = "";
+      }
+    },
+    error: function (err) {
+      console.error(err);
+    },
+  });
+};
+
+const searchByResultSearch = (word, lang, langtrans) => {
+  clear();
+  searchInput.value = word;
+  let result = [];
+  // search Db
+  const dataSearch =
+    "Id_Language=" +
+    lang +
+    "&Id_Language_trans=" +
+    langtrans +
+    "&sWord=" +
+    word;
+
+  $.ajax({
+    type: "get",
+    url: "searchWord",
+    data: dataSearch,
+    success: function (data) {
+      result = data;
+      handleSearch(result);
+    },
+    error: function (error) {
+      aler(error);
+    },
+  });
 };
 
 // Event
@@ -164,9 +224,35 @@ selectLanguage.addEventListener("change", () => {
       selectLanguageTran.innerHTML = html;
     });
   }
+  handlePreSearch();
+  searchClick();
 });
+
+selectLanguageTran.addEventListener("change", () => {
+  searchClick();
+  handlePreSearch();
+});
+
+let idTimeOut;
 searchInput.addEventListener("keyup", (e) => {
+  clearTimeout(idTimeOut);
   if (e.keyCode === 13) {
-    if (searchInput.value) searchClick();
+    if (searchInput.value) {
+      searchClick();
+      listSearch.classList.add("hidden");
+    }
+  } else {
+    idTimeOut = setTimeout(() => {
+      handlePreSearch();
+    }, 800);
   }
 });
+
+const searchForcus = () => {
+  listSearch.classList.remove("hidden");
+};
+const searchOutForcus = () => {
+  setTimeout(() => {
+    listSearch.classList.add("hidden");
+  }, 150);
+};

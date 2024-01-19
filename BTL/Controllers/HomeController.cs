@@ -43,8 +43,15 @@ namespace BTL.Controllers
 		[Route("searchWord")]
 		public List<WordSearch> searchWord(int Id_Language, int Id_Language_trans, string sWord)
 		{
-			//List<TblWord> tblWords =  this._dBDic.searchWord(Id_Language, Id_Language_trans, sWord).ToList();
 			List<WordSearch> w = this._dBDic.searchWord(Id_Language, Id_Language_trans, sWord).ToList();
+			return w;
+		}
+
+		[HttpGet]
+		[Route("preSearchWord")]
+		public List<WordSearch> preSearchWord(int Id_Language, int Id_Language_trans, string sWord)
+		{
+			List<WordSearch> w = this._dBDic.preSearchWord(Id_Language, Id_Language_trans, sWord).ToList();
 			return w;
 		}
 

@@ -170,4 +170,18 @@ public partial class DictionaryContext : DbContext
 			};
 		return this.WordSearches.FromSqlRaw(sql, parameters.ToArray());
 	}
+
+
+	public IQueryable<WordSearch> preSearchWord(int Id_Language, int Id_Language_trans, string sWord)
+	{
+
+		string sql = "EXECUTE SearchWords @word,@lang,@lang_trans";
+		List<SqlParameter> parameters = new List<SqlParameter>
+			{
+				 new SqlParameter { ParameterName = "@word", Value = sWord },
+				 new SqlParameter { ParameterName = "@lang", Value = Id_Language },
+				 new SqlParameter { ParameterName = "@lang_trans", Value = Id_Language_trans },
+			};
+		return this.WordSearches.FromSqlRaw(sql, parameters.ToArray());
+	}
 }

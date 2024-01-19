@@ -14,12 +14,14 @@
 		</select>
 		</div>
 			
-		<div class="p_search_wrap flex my-7">
-			<input type="text" id="search-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-xl lg:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Nhấp vào đây...">
-			<button id="search-button" class="ml-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl lg:text-sm  w-[100px] focus:outline-none ">Tra cứu</button>
+		<div class="relative">
+			<div class="p_search_wrap flex mt-7">
+				<input type="text" id="search-input" onfocus="searchForcus()" onfocusout="searchOutForcus()" class="bg-gray-50 border border-gray-300 text-gray-900 text-xl lg:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="Nhấp vào đây...">
+				<button id="search-button" class="ml-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl lg:text-sm  w-[100px] focus:outline-none ">Tra cứu</button>
+			</div>
+			<div id="list_search" class='w-full shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] hidden absolute z-10 bg-white'></div>
 		</div>
-		<div id="list_search"></div>
-		<div id="result" class="lg:px-0 sm:px-0 px-5">
+		<div id="result" class="lg:px-0 sm:px-0 px-5 mt-7">
 			<!-- Kết quả tra cứu sẽ hiển thị ở đây -->
 			<p class='text-4xl' id="word"></p>
 			<p id="phonetic" class="text-[12px] text-gray-400"></p>
