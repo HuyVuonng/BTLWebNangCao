@@ -165,7 +165,6 @@ const handlePreSearch = () => {
       if (data.length > 0) {
         let html = "";
         data.forEach((result) => {
-          console.log(result);
           html += `<div class='resultPreSearch w-full h-9 p-4' onclick="searchByResultSearch('${result.sWord}','${selectLanguage.value}','${selectLanguageTran.value}')">${result.sWord}</div>`;
         });
         listSearch.innerHTML = html;
@@ -182,6 +181,7 @@ const handlePreSearch = () => {
 const searchByResultSearch = (word, lang, langtrans) => {
   clear();
   searchInput.value = word;
+  handlePreSearch();
   let result = [];
   // search Db
   const dataSearch =
@@ -224,13 +224,17 @@ selectLanguage.addEventListener("change", () => {
       selectLanguageTran.innerHTML = html;
     });
   }
-  handlePreSearch();
-  searchClick();
+  if (searchInput) {
+    handlePreSearch();
+    searchClick();
+  }
 });
 
 selectLanguageTran.addEventListener("change", () => {
-  searchClick();
-  handlePreSearch();
+  if (searchInput) {
+    handlePreSearch();
+    searchClick();
+  }
 });
 
 let idTimeOut;
@@ -254,5 +258,5 @@ const searchForcus = () => {
 const searchOutForcus = () => {
   setTimeout(() => {
     listSearch.classList.add("hidden");
-  }, 150);
+  }, 300);
 };
