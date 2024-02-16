@@ -123,14 +123,25 @@ const handleSearch = async (result) => {
         example.innerHTML +
         "&sDefinition=" +
         definition.innerHTML;
-      $.ajax({
-        type: "post",
-        url: "addNewWord",
-        data: dataString,
-        error: function ($e) {
-          console.error($e);
-        },
-      });
+
+      const dataPost = {
+        IdLanguage: 1,
+        IdLanguageTrans: 1,
+        IdWordtype: typeID,
+        IdUser: 1,
+        SWord: word.innerHTML,
+        SExample: example.innerHTML,
+        SDefinition: definition.innerHTML,
+      };
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = () => {
+        if (xhttp.readyState !== 4 && xhttp.status !== 200) {
+          console.log(xhttp.statusText);
+        }
+      };
+      xhttp.open("POST", "addNewWord", true);
+      xhttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+      xhttp.send(JSON.stringify(dataPost));
     } else {
       laban.classList.remove("hidden");
     }
@@ -157,53 +168,50 @@ const handlePreSearch = () => {
     selectLanguageTran.value +
     "&sWord=" +
     searchInput.value;
-  $.ajax({
-    type: "get",
-    url: "preSearchWord",
-    data: dataSearch,
-    success: function (data) {
+
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = () => {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
+      const data = JSON.parse(xhttp.responseText);
       if (data.length > 0) {
         let html = "";
         data.forEach((result) => {
-          console.log(result);
           html += `<div class='resultPreSearch w-full h-9 p-4' onclick="searchByResultSearch('${result.sWord}','${selectLanguage.value}','${selectLanguageTran.value}')">${result.sWord}</div>`;
         });
         listSearch.innerHTML = html;
       } else {
         listSearch.innerHTML = "";
       }
-    },
-    error: function (err) {
-      console.error(err);
-    },
-  });
+    }
+  };
+  xhttp.open(
+    "GET",
+    `preSearchWord?Id_Language=${selectLanguage.value}&Id_Language_trans=${selectLanguageTran.value}&sWord=${searchInput.value}`,
+    true
+  );
+  xhttp.send();
 };
 
 const searchByResultSearch = (word, lang, langtrans) => {
   clear();
   searchInput.value = word;
+  handlePreSearch();
   let result = [];
   // search Db
-  const dataSearch =
-    "Id_Language=" +
-    lang +
-    "&Id_Language_trans=" +
-    langtrans +
-    "&sWord=" +
-    word;
-
-  $.ajax({
-    type: "get",
-    url: "searchWord",
-    data: dataSearch,
-    success: function (data) {
-      result = data;
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = () => {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
+      console.log(xhttp.responseText);
+      result = JSON.parse(xhttp.responseText);
       handleSearch(result);
-    },
-    error: function (error) {
-      aler(error);
-    },
-  });
+    }
+  };
+  xhttp.open(
+    "GET",
+    `searchWord?Id_Language=${lang}&Id_Language_trans=${langtrans}&sWord=${word}`,
+    true
+  );
+  xhttp.send();
 };
 
 // Event
@@ -224,13 +232,17 @@ selectLanguage.addEventListener("change", () => {
       selectLanguageTran.innerHTML = html;
     });
   }
-  handlePreSearch();
-  searchClick();
+  if (searchInput.value) {
+    handlePreSearch();
+    searchClick();
+  }
 });
 
 selectLanguageTran.addEventListener("change", () => {
-  searchClick();
-  handlePreSearch();
+  if (searchInput.value) {
+    handlePreSearch();
+    searchClick();
+  }
 });
 
 let idTimeOut;
@@ -254,5 +266,5 @@ const searchForcus = () => {
 const searchOutForcus = () => {
   setTimeout(() => {
     listSearch.classList.add("hidden");
-  }, 150);
+  }, 300);
 };
