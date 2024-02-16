@@ -1,3 +1,4 @@
+using BTL.DTO;
 using BTL.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -32,14 +33,14 @@ namespace BTL.Controllers
 
         [HttpPost]
         [Route("addNewWord")]
-        public IActionResult addWord(int Id_Language, int Id_Language_trans, int Id_wordtype, int Id_user, string sWord, string sExample, string sDefinition)
+        public ActionResult addWord([FromBody] WordDTO data)
         {
-            this._dBDic.addNewWord(Id_Language, Id_Language_trans, Id_wordtype, Id_user, sWord, sExample, sDefinition);
-            return View("Index");
+            this._dBDic.addNewWord(data.IdLanguage, data.IdLanguageTrans, data.IdWordtype, data.IdUser, data.SWord, data.SExample, data.SDefinition);
+            return Json(data);
         }
 
 
-		[HttpGet]
+        [HttpGet]
 		[Route("searchWord")]
 		public List<WordSearch> searchWord(int Id_Language, int Id_Language_trans, string sWord)
 		{
