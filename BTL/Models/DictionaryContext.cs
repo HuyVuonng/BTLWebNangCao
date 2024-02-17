@@ -140,10 +140,10 @@ public partial class DictionaryContext : DbContext
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
-    public void addNewWord(int Id_Language, int Id_Language_trans, int Id_wordtype,int Id_user, string sWord, string sExample, string sDefinition)
+    public void addNewWord(int Id_Language, int Id_Language_trans, int Id_wordtype,int Id_user, string sWord, string sExample, string sDefinition,string sWordTrans)
     {
 
-        string sql = "EXECUTE addNewWord @Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition";
+        string sql = "EXECUTE addNewWord @Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition, @sWordTrans";
         List<SqlParameter> parameters = new List<SqlParameter>
             {
                  new SqlParameter { ParameterName = "@Id_Language", Value = Id_Language },
@@ -153,6 +153,7 @@ public partial class DictionaryContext : DbContext
                  new SqlParameter { ParameterName = "@sWord", Value = sWord },
                  new SqlParameter { ParameterName = "@sExample", Value = sExample },
                  new SqlParameter { ParameterName = "@sDefinition", Value = sDefinition },
+                 new SqlParameter { ParameterName = "@sWordTrans", Value = sWordTrans },
             };
         this.Database.ExecuteSqlRaw(sql, parameters.ToArray());
     }

@@ -20,6 +20,7 @@ public partial class TblWord
     public string? SExample { get; set; }
 
     public string? SDefinition { get; set; }
+    public string? sWordTrans { get; set; }
 
     public virtual TblLanguage? IdLanguageNavigation { get; set; }
 

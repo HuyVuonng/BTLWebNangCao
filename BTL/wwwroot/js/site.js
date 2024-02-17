@@ -6,6 +6,7 @@ const searchBTN = document.querySelector("#search-button");
 const listSearch = document.querySelector("#list_search");
 const result = document.querySelector("#result");
 const word = document.querySelector("#word");
+const wordTrans = document.querySelector("#wordTrans");
 const type = document.querySelector("#type");
 const definition = document.querySelector("#definition");
 const example = document.querySelector("#example");
@@ -54,7 +55,7 @@ const searchClick = () => {
 };
 
 const handleSearch = async (result) => {
-  if (result.length > 0) {
+    if (result.length > 0) {
     word.innerHTML = result[0].sWord;
     if (selectLanguageTran.value === "1" && selectLanguage.value === "1") {
       console.log("here");
@@ -68,7 +69,8 @@ const handleSearch = async (result) => {
     }
     type.innerHTML = result[0].sWordtype;
     definition.innerHTML = result[0].sDefinition;
-    example.innerHTML = result[0].sExample;
+        example.innerHTML = result[0].sExample;
+        wordTrans.innerHTML = result[0].sWordTrans;
   } else if (selectLanguage.value === "1" && selectLanguageTran.value === "1") {
     const wordSearch = searchInput.value;
     const res = await fetch(
@@ -109,7 +111,8 @@ const handleSearch = async (result) => {
         IdUser: 1,
         SWord: word.innerHTML,
         SExample: example.innerHTML,
-        SDefinition: definition.innerHTML,
+          SDefinition: definition.innerHTML,
+          SWordTrans: ""
       };
       const xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = () => {
@@ -132,7 +135,8 @@ const clear = () => {
     type.innerHTML =
     definition.innerHTML =
     example.innerHTML =
-    phonetic.innerHTML =
+  phonetic.innerHTML =
+  wordTrans.innerHTML=
       "";
   laban.classList.add("hidden");
 };

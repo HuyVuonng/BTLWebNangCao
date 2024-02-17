@@ -4,8 +4,9 @@
 	{
 		
 		public string? SWord { get; set; }
+        public string? sWordTrans { get; set; }
 
-		public string? SExample { get; set; }
+        public string? SExample { get; set; }
 
 		public string? SDefinition { get; set; }
 

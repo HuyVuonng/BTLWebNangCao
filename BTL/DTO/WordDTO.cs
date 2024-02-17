@@ -15,5 +15,6 @@
         public string SExample { get; set; }
 
         public string SDefinition { get; set; }
+        public string SWordTrans { get; set; }
     }
 }
