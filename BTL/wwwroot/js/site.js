@@ -38,26 +38,19 @@ const searchClick = () => {
   clear();
   let result = [];
   // search Db
-  const dataSearch =
-    "Id_Language=" +
-    selectLanguage.value +
-    "&Id_Language_trans=" +
-    selectLanguageTran.value +
-    "&sWord=" +
-    wordSearch;
-
-  $.ajax({
-    type: "get",
-    url: "searchWord",
-    data: dataSearch,
-    success: function (data) {
-      result = data;
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = () => {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
+      result = JSON.parse(xhttp.responseText);
       handleSearch(result);
-    },
-    error: function (error) {
-      console.log(error);
-    },
-  });
+    }
+  };
+  xhttp.open(
+    "GET",
+    `searchWord?Id_Language=${selectLanguage.value}&Id_Language_trans=${selectLanguageTran.value}&sWord=${searchInput.value}`,
+    true
+  );
+  xhttp.send();
 };
 
 const handleSearch = async (result) => {
@@ -108,21 +101,6 @@ const handleSearch = async (result) => {
           : type.innerHTML === "adjective"
           ? 3
           : 4;
-      const dataString =
-        "Id_Language=" +
-        1 +
-        "&Id_Language_trans=" +
-        1 +
-        "&Id_wordtype=" +
-        typeID +
-        "&Id_user=" +
-        1 +
-        "&sWord=" +
-        word.innerHTML +
-        "&sExample=" +
-        example.innerHTML +
-        "&sDefinition=" +
-        definition.innerHTML;
 
       const dataPost = {
         IdLanguage: 1,
@@ -161,13 +139,6 @@ const clear = () => {
 
 const handlePreSearch = () => {
   listSearch.innerHTML = "";
-  const dataSearch =
-    "Id_Language=" +
-    selectLanguage.value +
-    "&Id_Language_trans=" +
-    selectLanguageTran.value +
-    "&sWord=" +
-    searchInput.value;
 
   const xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = () => {
