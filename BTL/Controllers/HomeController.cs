@@ -35,7 +35,7 @@ namespace BTL.Controllers
         [Route("addNewWord")]
         public ActionResult addWord([FromBody] WordDTO data)
         {
-            this._dBDic.addNewWord(data.IdLanguage, data.IdLanguageTrans, data.IdWordtype, data.IdUser, data.SWord, data.SExample, data.SDefinition);
+            this._dBDic.addNewWord(data.IdLanguage, data.IdLanguageTrans, data.IdWordtype, data.IdUser, data.SWord, data.SExample, data.SDefinition,data.SWordTrans);
             return Json(data);
         }
 

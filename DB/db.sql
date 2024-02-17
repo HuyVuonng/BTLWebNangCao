@@ -37,6 +37,8 @@ CREATE TABLE tblWord (
     FOREIGN KEY (Id_wordtype) REFERENCES tblWord_type(Id),
     FOREIGN KEY (Id_user) REFERENCES tblUser(Id)
 );
+ALTER TABLE tblWord
+ADD sWordTrans varchar(255);
 
 -- Tạo bảng tblHistory_search với cột id tự động tăng
 CREATE TABLE tblHistory_search (
@@ -154,13 +156,13 @@ VALUES
 
 go
 
-CREATE PROCEDURE SearchWords
+create PROCEDURE SearchWords
      @word NVARCHAR(255),
     @lang int,
     @lang_trans int
 AS
 BEGIN
-    SELECT w.sWord, wt.sWordtype, w.sExample, w.sDefinition,w.Id
+    SELECT w.sWord, wt.sWordtype, w.sExample, w.sDefinition,w.Id,w.sWordTrans
    FROM tblWord w,  tblWord_type wt
         WHERE @lang =w.Id_Language and @lang_trans= w.Id_Language_trans
           AND LOWER(w.sWord) LIKE LOWER(@word) + '%' and wt.Id= w.Id_wordtype;
@@ -169,13 +171,13 @@ END;
 EXEC SearchWords  N'N', 2, 1
 
 go
-CREATE PROCEDURE getForceWords
+create PROCEDURE getForceWords
      @word NVARCHAR(255),
     @lang int,
     @lang_trans int
 AS
 BEGIN
-    SELECT w.sWord, wt.sWordtype, w.sExample, w.sDefinition,w.Id
+    SELECT w.sWord, wt.sWordtype, w.sExample, w.sDefinition,w.Id,w.sWordTrans
    FROM tblWord w,  tblWord_type wt
         WHERE @lang =w.Id_Language and @lang_trans= w.Id_Language_trans
           AND LOWER(w.sWord) LIKE LOWER(@word) and wt.Id= w.Id_wordtype;
@@ -223,12 +225,12 @@ exec getHistorySearchUser 1
 
 
 go
-alter proc addNewWord
- @Id_Language int,@Id_Language_trans int, @Id_wordtype int, @Id_user int, @sWord NVARCHAR(255),@sExample NVARCHAR(255), @sDefinition NVARCHAR(255)  
+create proc addNewWord
+ @Id_Language int,@Id_Language_trans int, @Id_wordtype int, @Id_user int, @sWord NVARCHAR(255),@sExample NVARCHAR(255), @sDefinition NVARCHAR(255), @sWordTrans NVARCHAR(255)   
 AS
 BEGIN
-   insert into tblWord(Id_Language, Id_Language_trans, Id_wordtype, Id_user, sWord, sExample, sDefinition)
-   values(@Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition)
+   insert into tblWord(Id_Language, Id_Language_trans, Id_wordtype, Id_user, sWord, sExample, sDefinition, sWordTrans)
+   values(@Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition,@sWordTrans)
 END;
 
 exec getHistorySearchUser 1
