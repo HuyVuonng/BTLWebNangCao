@@ -234,3 +234,31 @@ BEGIN
 END;
 
 exec getHistorySearchUser 1
+
+create proc getAllUser
+AS
+BEGIN
+select *
+from tblUser
+where tblUser.sRole != N'Admin'
+END;
+
+exec getAllUser
+
+create proc upgradeRoleUser
+@IdUser int,@Role nvarchar(50)
+AS
+BEGIN
+update tblUser
+set sRole=@Role
+where tblUser.Id =@IdUser
+END;
+exec upgradeRoleUser 2, N'User'
+
+create proc deleteUser
+@IdUser int
+AS
+BEGIN
+delete tblUser
+where tblUser.Id =@IdUser
+END;
