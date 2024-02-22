@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qJEx7biUxHftWBfZI+IhkT9e8bYYeu0ja+os3WmvrkUE1Q6+ltc9tKXERTYD9ejZqF6y9pnPKqmd700tWNAjaw==",
+  "dgSpecHash": "solgHWSN4kl+/8qZcnz2bLqShl7en8kbRpgYkaKawySD/0ihdHLC6Jfvr71TEXiIBXhqoLyyO6VviOqNAFfR6A==",
   "success": true,
   "projectFilePath": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\BTL.csproj",
   "expectedPackageFiles": [
@@ -46,6 +46,7 @@
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\system.composition\\6.0.0\\system.composition.6.0.0.nupkg.sha512",
