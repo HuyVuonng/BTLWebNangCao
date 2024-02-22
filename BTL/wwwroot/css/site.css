@@ -46,3 +46,24 @@ body {
 .active{
     color:blue !important;
 }
+
+
+.pagination-container{
+    margin-top:10px;
+}
+.pagination {
+    justify-content: flex-end
+}
+
+.pagination > li > a {
+    padding: 0 8px;
+    border: 1px solid
+}
+.pagination > li+li{
+    margin: 0 5px;
+}
+
+    .pagination > li > span {
+        padding: 0 8px;
+        border: 1px solid
+    }

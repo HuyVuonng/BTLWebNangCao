@@ -1,6 +1,7 @@
 ﻿using BTL.DTO;
 using BTL.Models;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace BTL.Controllers
 {
@@ -22,9 +23,11 @@ namespace BTL.Controllers
 
 		[HttpGet]
 		[Route("/manager/user")]
-		public IActionResult ManagerUser()
+		public IActionResult ManagerUser(int page=1)
 		{
-            List<TblUser> users = this._dBDic.getAllUser().ToList(); ;
+            int pageSize = 10;
+            int pageNumber = page;
+            PagedList<TblUser> users = new PagedList<TblUser>( this._dBDic.getAllUser().ToList(), pageNumber, pageSize) ;
 			return View("managerUser",users);
 		}
 
@@ -45,6 +48,29 @@ namespace BTL.Controllers
         {
             this._dBDic.deleteUser(data.Id);
             return Json(data);
+        }
+
+
+
+        [HttpGet]
+        [Route("/manager/user/getListPageAjax")]
+        public ActionResult getListPageAjax(int page=1, int pageSize=1)
+        {
+            List<TblUser> users = this._dBDic.getAllUser().ToList(); ;
+
+            var pageIndex = page;
+            var totalPage= users.Count;
+            var numberPage = Math.Ceiling((float)(totalPage / pageSize));
+            var start = (pageIndex - 1) * pageSize;
+            var users1 = users.Skip(start).Take(pageSize);
+
+            return Json(new
+            {
+                data = users1,
+                totalItem = users.Count,
+                page,
+                pageSize
+            });
         }
     }
 }
