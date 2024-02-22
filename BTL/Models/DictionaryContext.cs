@@ -185,4 +185,35 @@ public partial class DictionaryContext : DbContext
 			};
 		return this.WordSearches.FromSqlRaw(sql, parameters.ToArray());
 	}
+
+
+    public IQueryable<TblUser> getAllUser()
+    {
+
+        return this.TblUsers.FromSqlRaw("EXECUTE getAllUser");
+    }
+
+
+    public void UpgradeRoleUser(int idUser, string role)
+    {
+
+        string sql = "EXECUTE upgradeRoleUser @IdUser,@Role";
+        List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                 new SqlParameter { ParameterName = "@IdUser", Value = idUser },
+                 new SqlParameter { ParameterName = "@Role", Value = role },
+            };
+        this.Database.ExecuteSqlRaw(sql, parameters.ToArray());
+    }
+
+    public void deleteUser(int idUser)
+    {
+
+        string sql = "EXECUTE deleteUser @IdUser";
+        List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                 new SqlParameter { ParameterName = "@IdUser", Value = idUser },
+            };
+        this.Database.ExecuteSqlRaw(sql, parameters.ToArray());
+    }
 }

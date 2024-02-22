@@ -1,0 +1,75 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+	ViewData["Title"] = "Manager User Page";
+}
+
+@model List<TblUser>
+
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
+            <tr>
+                <th scope="col" class="px-6 py-3 w-[50px]">
+                    ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                   Email
+                </th>
+                <th scope="col" class="px-6 py-3 w-[120px]">
+                    Role
+                </th>
+                <th scope="col" class="px-6 py-3 w-[200px]">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count >0)
+            {
+                @foreach (TblUser user in Model)
+                {
+                    <tr class="border-b dark:border-gray-700">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                            @user.Id
+                        </th>
+                        <td class="px-6 py-4">
+                            @user.SEmail
+                        </td>
+                        <td class="px-6 py-4">
+                            @user.SRole
+                        </td>
+                        <td class="px-6 py-4 flex flex-col">
+                            @if (@user.SRole == "CTV")
+                            {
+                                <a id="toUser" onclick="upgradeRole(@user.Id,'User')" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">To normal User</a>
+
+                            }
+                            @if (@user.SRole == "User")
+                            {
+                                <a id="updateToCTV" onclick="upgradeRole(@user.Id,'CTV')" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">To CTV</a>
+                            }
+                            <a onclick="deleteUser(@user.Id)" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+
+                        </td>
+                    </tr>
+
+                }
+            }
+           
+
+            @if (Model.Count == 0)
+            {
+                <tr class="h-[300px]">
+                    <td colspan="4" class="text-center font-[500] text-[20px]">Không có User nào</td>
+                </tr>
+            }
+           
+        </tbody>
+    </table>
+</div>
+
+</div>

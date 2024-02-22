@@ -42,3 +42,7 @@ body {
 .collapse{
     visibility:visible;
 }
+
+.active{
+    color:blue !important;
+}

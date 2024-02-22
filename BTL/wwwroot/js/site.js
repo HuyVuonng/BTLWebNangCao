@@ -14,7 +14,25 @@ const laban = document.querySelector("#laban");
 const selectLanguage = document.querySelector("#selectLanguage");
 const selectLanguageTran = document.querySelector("#selectLanguageTran");
 const phonetic = document.querySelector("#phonetic");
+const HomeTab = document.querySelector('#HomeTab');
+const ManagerWordTab = document.querySelector('#ManagerWordTab');
+const ManagerUserTab = document.querySelector('#ManagerUserTab');
 
+
+const setTabActive = ()=>{
+    console.log(window.location.pathname === "/manager/user")
+    if (window.location.pathname === "/") {
+        HomeTab.classList.add('active')
+    }
+    else if (window.location.pathname === "/manager/user") {
+        ManagerUserTab.classList.add('active')
+    }
+    else if (window.location.pathname === "/manager/word") {
+        ManagerWordTab.classList.add('active')
+    }
+}
+
+setTabActive();
 const valueLanguages = [
   {
     value: 2,
@@ -55,7 +73,7 @@ const searchClick = () => {
 };
 
 const handleSearch = async (result) => {
-    if (result.length > 0) {
+  if (result.length > 0) {
     word.innerHTML = result[0].sWord;
     if (selectLanguageTran.value === "1" && selectLanguage.value === "1") {
       console.log("here");
@@ -69,8 +87,8 @@ const handleSearch = async (result) => {
     }
     type.innerHTML = result[0].sWordtype;
     definition.innerHTML = result[0].sDefinition;
-        example.innerHTML = result[0].sExample;
-        wordTrans.innerHTML = result[0].sWordTrans;
+    example.innerHTML = result[0].sExample;
+    wordTrans.innerHTML = result[0].sWordTrans;
   } else if (selectLanguage.value === "1" && selectLanguageTran.value === "1") {
     const wordSearch = searchInput.value;
     const res = await fetch(
@@ -111,8 +129,8 @@ const handleSearch = async (result) => {
         IdUser: 1,
         SWord: word.innerHTML,
         SExample: example.innerHTML,
-          SDefinition: definition.innerHTML,
-          SWordTrans: ""
+        SDefinition: definition.innerHTML,
+        SWordTrans: "",
       };
       const xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = () => {
@@ -135,8 +153,8 @@ const clear = () => {
     type.innerHTML =
     definition.innerHTML =
     example.innerHTML =
-  phonetic.innerHTML =
-  wordTrans.innerHTML=
+    phonetic.innerHTML =
+    wordTrans.innerHTML =
       "";
   laban.classList.add("hidden");
 };

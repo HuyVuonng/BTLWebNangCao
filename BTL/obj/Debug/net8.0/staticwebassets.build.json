@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "beYdxCJPSMuKwvKNeGJ+7YoWlZ/3WlBRp1o2QMGmLgg=",
+  "Hash": "W8F0C9c/EZOI1QcLw+ozqCSFM8j3vxe6kmOSjk1J5OI=",
   "Source": "BTL",
   "BasePath": "_content/BTL",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\wwwroot\\js\\manager.js",
+      "SourceId": "BTL",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\wwwroot\\",
+      "BasePath": "_content/BTL",
+      "RelativePath": "js/manager.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\manager.js"
     },
     {
       "Identity": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\wwwroot\\js\\site.js",
