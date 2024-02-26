@@ -38,7 +38,7 @@ CREATE TABLE tblWord (
     FOREIGN KEY (Id_user) REFERENCES tblUser(Id)
 );
 ALTER TABLE tblWord
-ADD sWordTrans varchar(255);
+add COLUMN sWordTrans nvarchar(255);
 
 -- Tạo bảng tblHistory_search với cột id tự động tăng
 CREATE TABLE tblHistory_search (

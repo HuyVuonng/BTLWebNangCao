@@ -14,23 +14,19 @@ const laban = document.querySelector("#laban");
 const selectLanguage = document.querySelector("#selectLanguage");
 const selectLanguageTran = document.querySelector("#selectLanguageTran");
 const phonetic = document.querySelector("#phonetic");
-const HomeTab = document.querySelector('#HomeTab');
-const ManagerWordTab = document.querySelector('#ManagerWordTab');
-const ManagerUserTab = document.querySelector('#ManagerUserTab');
+const HomeTab = document.querySelector("#HomeTab");
+const ManagerWordTab = document.querySelector("#ManagerWordTab");
+const ManagerUserTab = document.querySelector("#ManagerUserTab");
 
-
-const setTabActive = ()=>{
-    console.log(window.location.pathname === "/manager/user")
-    if (window.location.pathname === "/") {
-        HomeTab.classList.add('active')
-    }
-    else if (window.location.pathname === "/manager/user") {
-        ManagerUserTab.classList.add('active')
-    }
-    else if (window.location.pathname === "/manager/word") {
-        ManagerWordTab.classList.add('active')
-    }
-}
+const setTabActive = () => {
+  if (window.location.pathname === "/") {
+    HomeTab.classList.add("active");
+  } else if (window.location.pathname === "/manager/user") {
+    ManagerUserTab.classList.add("active");
+  } else if (window.location.pathname === "/manager/word") {
+    ManagerWordTab.classList.add("active");
+  }
+};
 
 setTabActive();
 const valueLanguages = [
