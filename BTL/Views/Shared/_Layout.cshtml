@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<TblUser>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -33,7 +36,27 @@
                             <a id="ManagerWordTab"  class="text-black hover:!text-blue-600" href="/manager/word">Manager Word</a>
                         </li>
                         <li class="nav-item">
-                            <a id="ManagerUserTab" class="text-black hover:!text-blue-600" href="/manager/user">Manager User</a>
+@*                             @if (Model.Count > 0)
+                            {
+                                @foreach (TblUser user in Model)
+                                {
+                                    @if (@user.SRole == "Admin")
+                                    {
+                                        <a id="ManagerUserTab" class="text-black hover:!text-blue-600" href="/manager/user">Manager User</a>
+                                    }
+                                    @if (@user.SRole == "User")
+                                    {
+                                        <a id="ManagerUserTab" class="text-black hover:!text-blue-600 hidden" href="/manager/user">Manager User</a>
+                                    }
+                                }
+                            } *@
+
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Register">Register</a>
                         </li>
                     </ul>
                 </div>

@@ -1,6 +1,7 @@
-using BTL.DTO;
+﻿using BTL.DTO;
 using BTL.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace BTL.Controllers
@@ -56,5 +57,117 @@ namespace BTL.Controllers
 			return w;
 		}
 
-	}
+
+
+
+        /*        public IActionResult Login()
+                {
+                    return View();
+                }*/
+
+        /*        [HttpGet]
+                public ActionResult Register()
+                {
+                    return View();
+                }
+
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public async Task<IActionResult> Login(TblUser tbluser)
+                {
+                    *//*            var user = _dBDic.TblUsers.ToList();*/
+        /*            return Task.FromResult<IActionResult>(View(user));*//*
+        if (ModelState.IsValid)
+        {
+            var user = await _dBDic.TblUsers.FirstOrDefaultAsync(u => u.SEmail == tbluser.SEmail && u.SPassword == tbluser.SPassword);
+            if (user != null)
+            {
+                // Xác thực thành công, chuyển hướng đến trang chủ
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Đăng nhập không thành công. Vui lòng kiểm tra email và mật khẩu.");
+                return View(tbluser);
+            }
+        }
+        return View(tbluser);
+    }*/
+
+
+        /*        [HttpGet]
+                public IActionResult Login()
+                {
+                    if (HttpContext.Session.GetString("SEmail") == null)
+                    {
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+
+                [HttpPost]
+                public IActionResult Login(TblUser user)
+                {
+                    if (HttpContext.Session.GetString("SEmail") == null)
+                    {
+                        var u = _dBDic.TblUsers.Where(x => x.SEmail.Equals(user.SEmail) && x.SPassword.Equals(user.SPassword)).FirstOrDefault();
+                        if (u != null)
+                        {
+                            HttpContext.Session.SetString("SEmail", u.SEmail.ToString());
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    return View();
+                }*/
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(TblUser tblUser)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_dBDic.TblUsers.Any(x => x.SEmail == tblUser.SEmail))
+                {
+                    ViewBag.Message = "Email đã tồn tại";
+                }
+                else
+                {
+                    _dBDic.TblUsers.Add(tblUser);
+                    _dBDic.SaveChanges();
+                    TempData["Message"] = "Đăng ký tài khoản thành công";
+					return RedirectToAction("Login", "Home");
+				}
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(TblUser tblUser)
+        {
+            var us = _dBDic.TblUsers.SingleOrDefault(m => m.SEmail == tblUser.SEmail && m.SPassword == tblUser.SPassword);
+            if (us != null) {
+                TempData["SuccessfullyLogIn"] = "Đăng nhập thành công";
+                return RedirectToAction("Index", "Home");
+            }
+/*            else
+            {
+                TempData["ErrorInLogIn"] = "Tên tài khoản hoặc mật khẩu không chính xác";
+            }*/
+            return View();
+        }
+    }
 }
