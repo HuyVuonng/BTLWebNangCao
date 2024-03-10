@@ -1,6 +1,7 @@
-using BTL.DTO;
+﻿using BTL.DTO;
 using BTL.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace BTL.Controllers
@@ -56,5 +57,51 @@ namespace BTL.Controllers
 			return w;
 		}
 
-	}
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(TblUser tblUser)
+        {
+            if (ModelState.IsValid)
+            {
+                if (_dBDic.TblUsers.Any(x => x.SEmail == tblUser.SEmail))
+                {
+                    ViewBag.Message = "Email đã tồn tại";
+                }
+                else
+                {
+                    _dBDic.TblUsers.Add(tblUser);
+                    _dBDic.SaveChanges();
+                    TempData["Message"] = "Đăng ký tài khoản thành công";
+					return RedirectToAction("Login", "Home");
+				}
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(TblUser tblUser)
+        {
+            var us = _dBDic.TblUsers.SingleOrDefault(m => m.SEmail == tblUser.SEmail && m.SPassword == tblUser.SPassword);
+            if (us != null) {
+                TempData["SuccessfullyLogIn"] = "Đăng nhập thành công";
+                return RedirectToAction("Index", "Home");
+            }
+/*            else
+            {
+                TempData["ErrorInLogIn"] = "Tên tài khoản hoặc mật khẩu không chính xác";
+            }*/
+            return View();
+        }
+    }
 }

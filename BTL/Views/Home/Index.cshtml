@@ -1,7 +1,10 @@
 ﻿@{
 	ViewData["Title"] = "Home Page";
 }
-
+@if (ViewData["LogIn"] != null)
+{
+	<h4>@ViewData["SuccessfullyLogIn"]</h4>
+}
 <div class="lg:w-[600px] mx-auto">
 	<div  class="flex flex-col items-center justify-content-center">
 		<h1 class="display-4 text-[#FF00FF] lg:text-[100px] text-[80px]">Dictionary</h1>

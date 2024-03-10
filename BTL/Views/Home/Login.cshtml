@@ -1,0 +1,32 @@
+﻿@model BTL.Models.TblUser
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+
+    <div class="row mx-auto w-[550px] h-30 w-30 border border-black border-solid border-1 rounded-3xl flex flex-col justify-center items-center p-2">
+        <h1 class="mb-2 mt-5 text-4xl text-[#6495ed] hover:text-yellow text-center font-semibold">Đăng nhập</h1>
+        <div class="col-md-6 ">
+            @Html.LabelFor(temp => temp.SEmail)
+            @Html.TextBoxFor(temp => temp.SEmail, new { placeholder = "Mời bạn nhập email", @class = "form-control w-[250px] border border-black border-solid border-1 rounded-xl" })
+            @Html.ValidationMessageFor(temp => temp.SEmail)
+        </div>
+        <br />
+        <div class="col-md-6">
+            @Html.LabelFor(temp => temp.SPassword)
+            @Html.TextBoxFor(temp => temp.SPassword, new { placeholder = "Mời bạn nhập mật khẩu", @class = "form-control w-[250px] border border-black border-solid border-1 rounded-xl mb-4" })
+            @Html.ValidationMessageFor(temp => temp.SPassword)
+        </div>
+        <button type="submit" class="btn btn-success mx-auto h-[50px] w-[250px] bg-[#6495ed] text-red-50 mt-3 mb-2 rounded-md mb-4"> Đăng Nhập</button>
+
+        <div>
+            <p class="text-center">
+                Bạn chưa có tài khoản? @Html.ActionLink("Đăng ký","Register", null, new{ @class="text-blue-800 mb-3"})
+            </p>
+        </div>
+    </div>
+    <h4>@ViewData["LogIn"]</h4>
+
+}
