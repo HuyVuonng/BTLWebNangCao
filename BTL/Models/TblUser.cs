@@ -24,7 +24,7 @@ public partial class TblUser
     [Compare("SPassword", ErrorMessage = "Mật khẩu không trùng khớp")]
     public string sConfirmPassword { get; set; } = null!;
 
-    public string? SRole { get; set; }
+    public string? SRole { get; set; } = "User";
 
     public virtual ICollection<TblHistorySearch> TblHistorySearches { get; set; } = new List<TblHistorySearch>();
 
