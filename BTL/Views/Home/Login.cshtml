@@ -16,7 +16,7 @@
         <br />
         <div class="col-md-6">
             @Html.LabelFor(temp => temp.SPassword)
-            @Html.TextBoxFor(temp => temp.SPassword, new { placeholder = "Mời bạn nhập mật khẩu", @class = "form-control w-[250px] border border-black border-solid border-1 rounded-xl mb-4" })
+            @Html.TextBoxFor(temp => temp.SPassword, new { placeholder = "Mời bạn nhập mật khẩu",type = "password" , @class = "form-control w-[250px] border border-black border-solid border-1 rounded-xl mb-4" })
             @Html.ValidationMessageFor(temp => temp.SPassword)
         </div>
         <button type="submit" class="btn btn-success mx-auto h-[50px] w-[250px] bg-[#6495ed] text-red-50 mt-3 mb-2 rounded-md mb-4"> Đăng Nhập</button>
