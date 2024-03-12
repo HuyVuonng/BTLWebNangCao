@@ -1,5 +1,4 @@
-﻿@using X.PagedList.Mvc.Core
-@model X.PagedList.IPagedList<TblUser>
+﻿
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,34 +28,20 @@
                         <li class="nav-item">
                             <a id="HomeTab" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a  asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item admin CTV hidden">
+                            <a id="ManagerWordTab" class=" text-black hover:!text-blue-600" href="/manager/word">Manager Word</a>
                         </li>
-                        <li class="nav-item">
-                            <a id="ManagerWordTab"  class="text-black hover:!text-blue-600" href="/manager/word">Manager Word</a>
+                        <li class="nav-item  admin hidden">
+                            <a id="ManagerUserTab " class=" text-black hover:!text-blue-600" href="/manager/user">Manager User</a>
                         </li>
-                        <li class="nav-item">
-@*                             @if (Model.Count > 0)
-                            {
-                                @foreach (TblUser user in Model)
-                                {
-                                    @if (@user.SRole == "Admin")
-                                    {
-                                        <a id="ManagerUserTab" class="text-black hover:!text-blue-600" href="/manager/user">Manager User</a>
-                                    }
-                                    @if (@user.SRole == "User")
-                                    {
-                                        <a id="ManagerUserTab" class="text-black hover:!text-blue-600 hidden" href="/manager/user">Manager User</a>
-                                    }
-                                }
-                            } *@
-
+                        <li class="nav-item" id="loginBtn">
+                            <a  asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="Home" asp-action="Login">Login</a>
+                        <li class="nav-item" id="registerBtn">
+                            <a  asp-area="" asp-controller="Home" asp-action="Register">Register</a>
                         </li>
-                        <li class="nav-item">
-                            <a asp-area="" asp-controller="Home" asp-action="Register">Register</a>
+                        <li class="nav-item hidden cursor-pointer" id="LogoutBtn">
+                            <a  class=" text-black">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -78,7 +63,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/js/manager.js" asp-append-version="true"></script>
+	<script src="~/js/manager.js" asp-append-version="true"></script>
+    <script src="~/js/role.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
