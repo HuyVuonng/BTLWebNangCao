@@ -66,6 +66,7 @@ namespace BTL.Controllers
         [HttpPost]
         public ActionResult Register(TblUser tblUser)
         {
+            Console.WriteLine(tblUser);
             if (ModelState.IsValid)
             {
                 if (_dBDic.TblUsers.Any(x => x.SEmail == tblUser.SEmail))
@@ -77,7 +78,7 @@ namespace BTL.Controllers
                     _dBDic.TblUsers.Add(tblUser);
                     _dBDic.SaveChanges();
                     TempData["Message"] = "Đăng ký tài khoản thành công";
-					return RedirectToAction("Login", "Home");
+                    Response.Redirect("/Home/Login");
 				}
             }
             return View();
@@ -95,7 +96,8 @@ namespace BTL.Controllers
             var us = _dBDic.TblUsers.SingleOrDefault(m => m.SEmail == tblUser.SEmail && m.SPassword == tblUser.SPassword);
             if (us != null) {
                 TempData["SuccessfullyLogIn"] = "Đăng nhập thành công";
-                return RedirectToAction("Index", "Home");
+                TempData["role"] = $"{us.SRole}";
+				return RedirectToAction("Index", "Home");
             }
 /*            else
             {

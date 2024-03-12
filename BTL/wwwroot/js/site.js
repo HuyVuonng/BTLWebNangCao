@@ -17,16 +17,43 @@ const phonetic = document.querySelector("#phonetic");
 const HomeTab = document.querySelector("#HomeTab");
 const ManagerWordTab = document.querySelector("#ManagerWordTab");
 const ManagerUserTab = document.querySelector("#ManagerUserTab");
+const loginBtn = document.querySelector("#loginBtn");
+const registerBtn = document.querySelector("#registerBtn");
 
 const setTabActive = () => {
   if (window.location.pathname === "/") {
     HomeTab.classList.add("active");
   } else if (window.location.pathname === "/manager/user") {
-    ManagerUserTab.classList.add("active");
+      ManagerUserTab.classList.add("active");
+     
   } else if (window.location.pathname === "/manager/word") {
     ManagerWordTab.classList.add("active");
+  } else if (window.location.pathname === "/Home/Login") {
+      loginBtn.classList.add("active");
+    }
+  else if (window.location.pathname === "/Home/Register") {
+      registerBtn.classList.add("active");
   }
 };
+
+
+const guardRole = () => {
+    const roleLoginCheck = localStorage.getItem("role") ? localStorage.getItem("role") : ""
+    console.log("ád")
+    if (window.location.pathname === "/manager/user") {
+        if (roleLoginCheck !== "Admin") {
+            location.replace("/")
+
+        }
+    } else if (window.location.pathname === "/manager/word") {
+        if (roleLoginCheck !== "Admin" && roleLoginCheck !== "CTV") {
+            location.replace("/")
+        }
+    }
+}
+
+guardRole();
+
 
 setTabActive();
 const valueLanguages = [

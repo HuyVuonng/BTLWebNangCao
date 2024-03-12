@@ -4,7 +4,7 @@
     ViewData["Title"] = "Register Page";
 }
 
-@using (Html.BeginForm("Register", "Home", FormMethod.Post))
+@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @id = "form" } ))
 {
     <div class="row mx-auto w-[550px] h-30 w-30 border border-black border-solid border-1 rounded-3xl flex flex-col justify-center items-center p-2">
         <h1 class="mb-2 mt-5 text-4xl text-[#6495ed] hover:text-yellow text-center font-semibold">Đăng ký</h1>
@@ -15,15 +15,14 @@
         </div>
         <div class="col-md-6">
             @Html.LabelFor(temp => temp.SPassword)
-            @Html.TextBoxFor(temp => temp.SPassword, new { placeholder = "Mời bạn nhập mật khẩu", @class = "form-control w-[250px] border border-black border-solid border-1 rounded-xl mb-4" })
+            @Html.TextBoxFor(temp => temp.SPassword, new { placeholder = "Mời bạn nhập mật khẩu", type = "password", @class = "form-control w-[250px] border border-black border-solid border-1 rounded-xl mb-4 passRegister" })
             @Html.ValidationMessageFor(temp => temp.SPassword)
         </div>
-        <div class="col-md-6">
-            @Html.LabelFor(temp => temp.sConfirmPassword)
-            @Html.TextBoxFor(temp => temp.sConfirmPassword, new { placeholder = "Mời bạn nhập lại mật khẩu", @class = "form-control w-[250px] border border-black border-solid border-1 rounded-xl mb-4" })
-            @Html.ValidationMessageFor(temp => temp.sConfirmPassword)
+        <div class="col-md-6 mb-4">
+            <input type="password" placeholder="Mời bạn nhập lại mật khẩu" class="form-control w-[250px] border border-black border-solid border-1 rounded-xl  confirmPassRegister"/>
+            <span class="text-red-600 hidden textErrorPass">Mật khẩu không trùng khớp</span>
         </div>
-        <button type="submit" class="btn btn-danger mx-auto h-[50px] w-[250px] bg-[#6495ed] text-red-50 mt-3 mb-2 rounded-md mb-4"> Đăng Ký</button>
+        <button type="submit" onclick="return validateForm();" class="btn btn-danger mx-auto h-[50px] w-[250px] bg-[#6495ed] text-red-50 mt-3 mb-2 rounded-md mb-4"> Đăng Ký</button>
         <div>
             <p class="text-center">
                 Bạn đã có tài khoản? @Html.ActionLink("Đăng nhập", "Login", null, new { @class = "text-blue-800 mb-3" })
@@ -35,3 +34,18 @@
 
 
 }
+<script>
+    const inputPass = document.querySelector(".passRegister")
+    const inputConfirmPass = document.querySelector(".confirmPassRegister")
+    const textErrorPass = document.querySelector(".textErrorPass")
+    const form = document.querySelector("#form")
+
+    const validateForm = () => {
+        if (inputPass.value !== inputConfirmPass.value) {
+            textErrorPass.classList.remove("hidden")
+            return false
+        } else {
+        form.submit();
+        }
+    }
+</script>

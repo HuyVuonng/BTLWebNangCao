@@ -23,13 +23,14 @@ namespace BTL.Controllers
 
 		[HttpGet]
 		[Route("/manager/user")]
-		public IActionResult ManagerUser(int page=1)
-		{
+        public IActionResult ManagerUser(int page = 1)
+        {
             int pageSize = 10;
             int pageNumber = page;
-            PagedList<TblUser> users = new PagedList<TblUser>( this._dBDic.getAllUser().ToList(), pageNumber, pageSize) ;
-			return View("managerUser",users);
-		}
+            PagedList<TblUser> users = new PagedList<TblUser>(this._dBDic.getAllUser().ToList(), pageNumber, pageSize);
+            return View("managerUser", users);
+        }
+
 
 
 

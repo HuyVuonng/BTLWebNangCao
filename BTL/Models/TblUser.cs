@@ -19,12 +19,7 @@ public partial class TblUser
     [MinLength(2, ErrorMessage = "Mật khẩu phải có 2 kí tự trở lên")]
     public string SPassword { get; set; } = null!;
 
-    [Display(Name = "Xác nhận mật khẩu")]
-    [DataType(DataType.Password)]
-    [Compare("SPassword", ErrorMessage = "Mật khẩu không trùng khớp")]
-    public string sConfirmPassword { get; set; } = null!;
-
-    public string? SRole { get; set; }
+    public string? SRole { get; set; } = "User";
 
     public virtual ICollection<TblHistorySearch> TblHistorySearches { get; set; } = new List<TblHistorySearch>();
 
