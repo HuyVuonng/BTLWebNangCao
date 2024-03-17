@@ -38,7 +38,7 @@ CREATE TABLE tblWord (
     FOREIGN KEY (Id_user) REFERENCES tblUser(Id)
 );
 ALTER TABLE tblWord
-add COLUMN sWordTrans nvarchar(255);
+create COLUMN sWordTrans nvarchar(255);
 
 -- Tạo bảng tblHistory_search với cột id tự động tăng
 CREATE TABLE tblHistory_search (
@@ -262,3 +262,14 @@ BEGIN
 delete tblUser
 where tblUser.Id =@IdUser
 END;
+
+create proc filterUser
+@email  nvarchar(50), @role nvarchar(50)
+AS
+BEGIN
+select *
+from tblUser
+where tblUser.sEmail like '%'+ @email+ '%' and tblUser.sRole like '%'+ @role+ '%'
+END;
+
+exec filterUser 'd',''

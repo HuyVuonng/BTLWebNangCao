@@ -22,8 +22,8 @@ const registerBtn = document.querySelector("#registerBtn");
 
 const setTabActive = () => {
   if (window.location.pathname === "/") {
-    HomeTab.classList.add("active");
-  } else if (window.location.pathname === "/manager/user") {
+        HomeTab.classList.add("active");
+    } else if (window.location.pathname.includes("/manager/user")) {
       ManagerUserTab.classList.add("active");
      
   } else if (window.location.pathname === "/manager/word") {

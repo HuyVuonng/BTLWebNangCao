@@ -51,6 +51,16 @@ namespace BTL.Controllers
             return Json(data);
         }
 
+        [HttpGet]
+        [Route("/manager/user/filterUser")]
+        public IActionResult filterUser(string email="", string role="", int page = 1)
+        {
+            Console.WriteLine("áda "+email + role);
+            int pageSize = 10;
+            int pageNumber = page;
+            PagedList<TblUser> userFilter = new PagedList<TblUser>(this._dBDic.filterUser(email, role).ToList(), pageNumber, pageSize);
+            return View("managerUser", userFilter);
+        }
 
 
         [HttpGet]
