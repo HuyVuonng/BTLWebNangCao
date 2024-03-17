@@ -8,7 +8,18 @@
 @model X.PagedList.IPagedList<TblUser>
 
 
-
+<form asp-action="filterUser" asp-controller="Manager" method="get" class="flex items-center gap-3">
+    
+    <input name="email" placeholder="Email search"/>
+    <label for="role">Role</label>
+    <select id="role" name="role" class="bg-gray-50 border border-gray-300 text-gray-900 text-xl w-fit lg:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 ">
+        <option value="" selected>Tất cả</option>
+        <option value="User">User</option>
+        <option value="CTV">CTV</option>
+    </select>
+    <input type="submit" value="Search" class="bg-blue-700 text-white w-[65px] h-[30px] rounded-3 hover:opacity-75"/>
+    <a href="/manager/user" class="bg-red-700 text-white  px-[10px] py-[3px]  rounded-3 hover:opacity-75 hover:text-black">Cancel</a>
+</form>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-12">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">

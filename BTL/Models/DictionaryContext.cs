@@ -216,4 +216,15 @@ public partial class DictionaryContext : DbContext
             };
         this.Database.ExecuteSqlRaw(sql, parameters.ToArray());
     }
+
+    public IQueryable<TblUser> filterUser(string email, string role)
+    {
+        string sql = "EXECUTE filterUser @email, @role";
+        List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                 new SqlParameter { ParameterName = "@email", Value = email },
+                 new SqlParameter { ParameterName = "@role", Value = role },
+            };
+        return this.TblUsers.FromSqlRaw(sql, parameters.ToArray());
+    }
 }
