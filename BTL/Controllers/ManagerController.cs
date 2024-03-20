@@ -14,14 +14,40 @@ namespace BTL.Controllers
             _logger = logger;
             this._dBDic = dictionaryContext;
         }
+        //------------------------MANAGER/WORD---------------------------
         [HttpGet]
         [Route("/manager/word")]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            return View();
+            int pageSize = 10;
+            int pageNumber = page;
+            PagedList<TblWord> word = new PagedList<TblWord>(this._dBDic.getallword().ToList(), pageNumber, pageSize);
+            return View("Index", word);
         }
+        [HttpPost]
+        [Route("/manager/word")]
+        public IActionResult getwordbyid(int id)
+        {
+            List<TblWord> word = this._dBDic.getWordbyid(id).ToList();
+            return View("Index", word);
+        }
+        [HttpPost]
+        [Route("/manager/word/edit")]
+        public IActionResult editword([FromBody] TblWord data)
+        {
+            this._dBDic.editword(data.Id, data.IdLanguage, data.IdLanguageTrans, data.IdWordtype, data.IdUser, data.SWord, data.SExample, data.SDefinition, data.sWordTrans);
+            return Json(data);
+        }
+        [HttpDelete]
+        [Route("/manager/word/delete")]
+        public IActionResult DeleteWord([FromBody] TblWord data)
+        {
+            this._dBDic.deleteWord(data.Id);
+            return Json(data);
+        }
+        //--------------------------MANAGER/USER----------------------------
 
-		[HttpGet]
+        [HttpGet]
 		[Route("/manager/user")]
         public IActionResult ManagerUser(int page = 1)
         {
