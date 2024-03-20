@@ -56,9 +56,9 @@ const deleteUser = (e) => {
 //let html1 = "";
 //valueLanguages.forEach((e) => {
 //    html1 += `<option value=${e.value}>${e.lang}</option>`;
-//    selectLanguage1.innerHTML = html1;
+//    Language1.innerHTML = html1;
 
-//    selectLanguageTran1.innerHTML = html1;
+//    Languagetrans1.innerHTML = html1;
 
 //});
 
@@ -94,11 +94,11 @@ const getWordById = (event, id) => {
     const idUser = row.querySelector('#idUser').innerText.trim();
     const word = row.querySelector('#word').innerText.trim();
     const example = row.querySelector('#example').innerText.trim();
-    const definition = row.querySelector('#definition').innerText.trim();
+    const definition = row.querySelector('#definition').innerText.trim(); 
     const wordTrans = row.querySelector('#wordTrans').innerText.trim();
 
-    document.getElementById('selectLanguage').value = language;
-    document.getElementById('selectLanguageTran').value = languageTrans;
+    document.getElementById('Language').value = language;
+    document.getElementById('Languagetrans').value = languageTrans;
     document.getElementById('WordTypes').value = wordtypes;
     document.getElementById('Id_user').value = idUser;
     document.getElementById('Word').value = word;
@@ -118,11 +118,11 @@ function scrolltoTop() {
 }
 function dataword() {
 
-    const language = document.getElementById('selectLanguage').value;
+    const language = document.getElementById('Language').value;
     const idWordType = document.getElementById('WordTypes').value;
     const word = document.getElementById('Word').value;
     const definition = document.getElementById('Definition').value;
-    const languageTrans = document.getElementById('selectLanguageTran').value;
+    const languageTrans = document.getElementById('Languagetrans').value;
     const idUser = document.getElementById('Id_user').value;
     const example = document.getElementById('Example').value;
     const wordTrans = document.getElementById('WordTrans').value;

@@ -13,7 +13,10 @@
     <div class="column1">
         <div class="row1">
             <label class="lb1">Language : </label>
-            <select style="width: 168px;" id="selectLanguage">
+            <select style="width: 168px;" id="Language">
+                <option value="disable" disabled selected>Chọn Language</option>
+                <option value="1">Tiếng Anh</option>
+                <option value="2">Tiếng Việt</option>
             </select>
         </div>
         <div class="row1">
@@ -38,7 +41,10 @@
     <div class="column1">
         <div class="row1">
             <label class="lb">Language trans : </label>
-            <select style="width: 142px;" id="selectLanguageTran">
+            <select style="width: 142px;" id="Languagetrans">
+                <option value="disable" disabled selected>Chọn Language trans</option>
+                <option value="2">Tiếng Việt</option>
+                <option value="1">Tiếng Anh</option>
             </select>
         </div>
         <div class="row1">
@@ -116,7 +122,9 @@
                         </p>
                     </th>
                     <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
-                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70"></p>
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Date
+                        </p>
                     </th>
                 </tr>
             </thead>
@@ -169,6 +177,11 @@
                             <td class="p-4">
                                 <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="wordTrans">
                                     @w.sWordTrans
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="wordTrans">
+                                    @w.sTime
                                 </p>
                             </td>
                             <td class="p-4">

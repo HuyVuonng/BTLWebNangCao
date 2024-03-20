@@ -230,7 +230,7 @@ public partial class DictionaryContext : DbContext
     //-------------------------------WORD----------------------------------
     public IQueryable<TblWord> getallword()
     {
-        return this.TblWords.FromSqlRaw("select * from tblWord");
+        return this.TblWords.FromSqlRaw("select * from tblWord ORDER BY sTime DESC;");
     }
     public IQueryable<TblWord> getWordbyid(int ID)
     {
