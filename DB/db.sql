@@ -273,3 +273,38 @@ where tblUser.sEmail like '%'+ @email+ '%' and tblUser.sRole like '%'+ @role+ '%
 END;
 
 exec filterUser 'd',''
+
+drop proc getwordbyid
+create proc getwordbyid
+@id int
+as
+begin
+select * from tblWord
+where ID = @id
+end
+
+create proc deleteWord
+@word nvarchar(100)
+AS
+BEGIN
+delete tblWord
+where tblWord.sWord = @word
+END;
+exec deleteWord 'Nói'
+
+create proc editWord
+@Id_Language int,@Id_Language_trans int, @Id_wordtype int, @Id_user int,
+@sWord NVARCHAR(255),@sExample NVARCHAR(255), @sDefinition NVARCHAR(255), @sWordTrans NVARCHAR(255)   
+as
+begin
+set nocount on;
+update tblWord
+set Id_Language=@Id_Language ,
+	Id_Language_trans = @Id_Language_trans,
+	Id_wordtype = @Id_wordtype,
+	Id_user = @Id_user,
+	sWord = @sWord ,
+	sExample = @sExample ,
+	sDefinition = @sDefinition ,
+	sWordTrans = @sWordTrans
+end;
