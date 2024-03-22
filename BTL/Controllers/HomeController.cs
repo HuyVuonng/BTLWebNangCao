@@ -97,6 +97,7 @@ namespace BTL.Controllers
             if (us != null) {
                 TempData["SuccessfullyLogIn"] = "Đăng nhập thành công";
                 TempData["role"] = $"{us.SRole}";
+				TempData["id"] = $"{us.Id}";
 				return RedirectToAction("Index", "Home");
             }
 /*            else
