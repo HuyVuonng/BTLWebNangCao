@@ -39,7 +39,6 @@ const setTabActive = () => {
 
 const guardRole = () => {
     const roleLoginCheck = localStorage.getItem("role") ? localStorage.getItem("role") : ""
-    console.log("ád")
     if (window.location.pathname === "/manager/user") {
         if (roleLoginCheck !== "Admin") {
             location.replace("/")
@@ -84,7 +83,8 @@ const searchClick = () => {
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
       result = JSON.parse(xhttp.responseText);
-      handleSearch(result);
+        /*handleSearch(result);*/
+        console.log(result);
     }
   };
   xhttp.open(
@@ -92,7 +92,7 @@ const searchClick = () => {
     `searchWord?Id_Language=${selectLanguage.value}&Id_Language_trans=${selectLanguageTran.value}&sWord=${searchInput.value}`,
     true
   );
-  xhttp.send();
+    xhttp.send();
 };
 
 const handleSearch = async (result) => {

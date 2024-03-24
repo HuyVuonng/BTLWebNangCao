@@ -8,69 +8,87 @@
 @using X.PagedList.Mvc.Core
 @model X.PagedList.IPagedList<TblWord>
 
-@* <a asp-action="editWord" >Create</a> *@
-<div class="container1">
-    <div class="column1">
-        <div class="row1">
-            <label class="lb1">Language : </label>
-            <select style="width: 168px;" id="Language">
-                <option value="disable" disabled selected>Chọn Language</option>
-                <option value="1">Tiếng Anh</option>
-                <option value="2">Tiếng Việt</option>
-            </select>
-        </div>
-        <div class="row1">
-            <label class="lb">IdWordType : </label>
-            <select style="width: 175px;" id="WordTypes">
-                <option value="disable" disabled selected>Chọn IDWordType</option>
-                <option value="1">Động từ</option>
-                <option value="2">Danh từ</option>
-                <option value="3">Tính từ</option>
-                <option value="4">Trạng từ</option>
-            </select>
-        </div>
-        <div class="row1">
-            <label class="lb1">Word : </label>
-            <input type="text" id="Word" placeholder="Nhập từ thêm ...">
-        </div>
-        <div class="row1">
-            <label class="lb1">Definition : </label>
-            <input type="text" id="Definition" placeholder="Definition ...">
+<div class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-lg border border-gray-300">
+    <div class="flex items-center justify-center mb-4">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-blue-600" id="add">ADD NEW WORD</h1>
         </div>
     </div>
-    <div class="column1">
-        <div class="row1">
-            <label class="lb">Language trans : </label>
-            <select style="width: 142px;" id="Languagetrans">
-                <option value="disable" disabled selected>Chọn Language trans</option>
-                <option value="2">Tiếng Việt</option>
-                <option value="1">Tiếng Anh</option>
-            </select>
+    <div class="grid grid-cols-2 gap-6">
+        <div class="flex flex-col">
+            <div class="mb-4">
+                <label for="Language" class="block mb-2 text-sm font-medium">LANGUAGE :</label>
+                <select id="Language" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="disable" disabled selected>Chọn Language</option>
+                    <option value="1">Tiếng Anh</option>
+                    <option value="2">Tiếng Việt</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="WordTypes" class="block mb-2 text-sm font-medium">WORDTYPE :</label>
+                <select id="WordTypes" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="disable" disabled selected>Chọn WordType</option>
+                    <option value="1">Động từ</option>
+                    <option value="2">Danh từ</option>
+                    <option value="3">Tính từ</option>
+                    <option value="4">Trạng từ</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="Word" class="block mb-2 text-sm font-medium">WORD :</label>
+                <input type="text" id="Word" placeholder="Nhập từ thêm ..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="Definition" class="block mb-2 text-sm font-medium">DEFINITION :</label>
+                <input type="text" id="Definition" placeholder="Definition ..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
         </div>
-        <div class="row1">
-            <label class="lb">Id_user : </label>
-            <input type="text" id="Id_user" placeholder="Nhập Id_user...">
-        </div>
-        <div class="row1">
-            <label class="lb">Example : </label>
-            <input type="text" id="Example" placeholder="Example ...">
-        </div>
-        <div class="row1">
-            <labal>Wordtrans</labal>
-            <input type="text" id="WordTrans" placeholder="Nhập Wordtrans ...">
+        <div class="flex flex-col">
+            <div class="mb-4">
+                <label for="Languagetrans" class="block mb-2 text-sm font-medium">LANGUAGE TRANS :</label>
+                <select id="Languagetrans" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="disable" disabled selected>Chọn Language trans</option>
+                    <option value="2">Tiếng Việt</option>
+                    <option value="1">Tiếng Anh</option>
+                </select>
+            </div>
+            <div class="mb-4" >
+                <label for="Id_user" class="block mb-2 text-sm font-medium">ID_USER :</label>
+                <input type="text" id="Id_user" disabled readonly placeholder="Nhập Id_user..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="Example" class="block mb-2 text-sm font-medium">EXAMPLE :</label>
+                <input type="text" id="Example" placeholder="Example ..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+            </div>
+            <div class="mb-4">
+                <label for="WordTrans" class="block mb-2 text-sm font-medium">WORDTRANS :</label>
+                <input type="text" id="WordTrans" placeholder="Nhập Wordtrans ..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
         </div>
     </div>
-</div>
-<div>
-    <div class="button">
-        <button id="btnAdd" onclick="dataword()">Add</button>
+    <div class="button text-center mt-6">
+        <button id="btnAdd" onclick="dataword()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add</button>
+        <button id="clear" onclick="clearData()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Clear</button>
     </div>
 </div>
 
 <form asp-action="Index" asp-controller="Manager" method="post">
     <div class="searchword">
-        <input type="text" name="id" placeholder="Nhập từ mà bạn muốn tìm kiếm ..." />
-        <input type="submit" value="search" />
+        <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
+            </div>
+            <input type="search" name="id" id="search" class="block w-full p-4 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" />
+            <button type="submit" value="search" class="text-white  translate-y-[-20%] absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+        </div>
+    </div>
+    <div class="flex items-center justify-center mb-4">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-blue-600 dark:focus:ring-blue-800 cursor-pointer" onclick="getword()">WORD LIST</h1>
+        </div>
     </div>
     <div class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md bg-clip-border rounded-xl">
         <table class="w-full text-left table-auto min-w-max">
@@ -185,7 +203,7 @@
                                 </p>
                             </td>
                             <td class="p-4">
-                                <a onclick="getWordById(event,@w.Id)" id="edit" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a onclick="getWordById(event , @w.Id)" id="edit" data-id="'+ idRow +'" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                 <a onclick="deleteWord(@w.Id)" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
                             </td>
                         </tr>

@@ -26,9 +26,11 @@ namespace BTL.Controllers
         }
         [HttpPost]
         [Route("/manager/word")]
-        public IActionResult getwordbyid(int id)
+        public IActionResult getwordbyid(int id, int page = 1)
         {
-            List<TblWord> word = this._dBDic.getWordbyid(id).ToList();
+            int pageSize = 10;
+            int pageNumber = page;
+            PagedList<TblWord> word = new (this._dBDic.getWordbyid(id).ToList(), pageNumber, pageSize);
             return View("Index", word);
         }
         [HttpPost]
@@ -37,6 +39,13 @@ namespace BTL.Controllers
         {
             this._dBDic.editword(data.Id, data.IdLanguage, data.IdLanguageTrans, data.IdWordtype, data.IdUser, data.SWord, data.SExample, data.SDefinition, data.sWordTrans);
             return Json(data);
+        }
+        [HttpGet]
+        [Route("manager/searchWord")]
+        public List<WordSearch> searchWords(int Id_Language, int Id_Language_trans, string sWord)
+        {
+            List<WordSearch> w = this._dBDic.searchWord(Id_Language, Id_Language_trans, sWord).ToList();
+            return w;
         }
         [HttpDelete]
         [Route("/manager/word/delete")]

@@ -140,7 +140,7 @@ public partial class DictionaryContext : DbContext
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     //-------------------------------WORD----------------------------------
-    public void addNewWord(int Id_Language, int Id_Language_trans, int Id_wordtype,int Id_user, string sWord, string sExample, string sDefinition,string sWordTrans)
+    public void addNewWord(int Id_Language, int Id_Language_trans, int Id_wordtype, int Id_user, string sWord, string sExample, string sDefinition, string sWordTrans)
     {
 
         string sql = "EXECUTE addNewWord @Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition, @sWordTrans";
@@ -159,7 +159,7 @@ public partial class DictionaryContext : DbContext
     }
 
 
-	public IQueryable<WordSearch> searchWord(int Id_Language, int Id_Language_trans, string sWord)
+    public IQueryable<WordSearch> searchWord(int Id_Language, int Id_Language_trans, string sWord)
 	{
 
 		string sql = "EXECUTE getForceWords @word,@lang,@lang_trans";
@@ -239,7 +239,7 @@ public partial class DictionaryContext : DbContext
     }
     public void editword(int id, int? Id_Language, int? Id_Language_trans, int? Id_wordtype, int? Id_user, string? sWord, string? sExample, string? sDefinition, string? sWordTrans)
     {
-        string sql = "EXECUTE editWord @Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition, @sWordTrans,@id ";
+        string sql = "EXECUTE editWord @Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition, @sWordTrans,@id";
         List<SqlParameter> parameters = new List<SqlParameter>
             {
                  new SqlParameter { ParameterName = "@Id_Language", Value = Id_Language },
@@ -251,7 +251,7 @@ public partial class DictionaryContext : DbContext
                  new SqlParameter { ParameterName = "@sDefinition", Value = sDefinition },
                  new SqlParameter { ParameterName = "@sWordTrans", Value = sWordTrans },
                  new SqlParameter { ParameterName = "@id", Value = id },
-            };
+			};
         this.Database.ExecuteSqlRaw(sql, parameters.ToArray());
     }
     public void deleteWord(int idWord)
