@@ -36,7 +36,7 @@ namespace BTL.Controllers
         [Route("addNewWord")]
         public ActionResult addWord([FromBody] WordDTO data)
         {
-            this._dBDic.addNewWord(data.IdLanguage, data.IdLanguageTrans, data.IdWordtype, data.IdUser, data.SWord, data.SExample, data.SDefinition,data.SWordTrans);
+            this._dBDic.addNewWord(data.IdLanguage, data.IdLanguageTrans, data.IdWordtype, data.IdUser, data.SWord, data.SExample, data.SDefinition, data.SWordTrans);
             return Json(data);
         }
 
@@ -49,7 +49,7 @@ namespace BTL.Controllers
 			return w;
 		}
 
-		[HttpGet]
+        [HttpGet]
 		[Route("preSearchWord")]
 		public List<WordSearch> preSearchWord(int Id_Language, int Id_Language_trans, string sWord)
 		{

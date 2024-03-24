@@ -139,8 +139,8 @@ public partial class DictionaryContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-    public void addNewWord(int Id_Language, int Id_Language_trans, int Id_wordtype,int Id_user, string sWord, string sExample, string sDefinition,string sWordTrans)
+    //-------------------------------WORD----------------------------------
+    public void addNewWord(int Id_Language, int Id_Language_trans, int Id_wordtype, int Id_user, string sWord, string sExample, string sDefinition, string sWordTrans)
     {
 
         string sql = "EXECUTE addNewWord @Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition, @sWordTrans";
@@ -159,7 +159,7 @@ public partial class DictionaryContext : DbContext
     }
 
 
-	public IQueryable<WordSearch> searchWord(int Id_Language, int Id_Language_trans, string sWord)
+    public IQueryable<WordSearch> searchWord(int Id_Language, int Id_Language_trans, string sWord)
 	{
 
 		string sql = "EXECUTE getForceWords @word,@lang,@lang_trans";
@@ -186,7 +186,7 @@ public partial class DictionaryContext : DbContext
 		return this.WordSearches.FromSqlRaw(sql, parameters.ToArray());
 	}
 
-
+    //-----------------------------------USER-------------------------------------
     public IQueryable<TblUser> getAllUser()
     {
 
@@ -226,5 +226,42 @@ public partial class DictionaryContext : DbContext
                  new SqlParameter { ParameterName = "@role", Value = role },
             };
         return this.TblUsers.FromSqlRaw(sql, parameters.ToArray());
+    }
+    //-------------------------------WORD----------------------------------
+    public IQueryable<TblWord> getallword()
+    {
+        return this.TblWords.FromSqlRaw("select * from tblWord ORDER BY sTime DESC;");
+    }
+    public IQueryable<TblWord> searchword(string word)
+    {
+        SqlParameter Word = new SqlParameter("@word", word);
+        return this.TblWords.FromSqlRaw("EXECUTE searchword @word", Word);
+    }
+    public void editword(int id, int? Id_Language, int? Id_Language_trans, int? Id_wordtype, int? Id_user, string? sWord, string? sExample, string? sDefinition, string? sWordTrans)
+    {
+        string sql = "EXECUTE editWord @id, @Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition, @sWordTrans";
+        List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                 new SqlParameter { ParameterName = "@Id_Language", Value = Id_Language },
+                 new SqlParameter { ParameterName = "@Id_Language_trans", Value = Id_Language_trans },
+                 new SqlParameter { ParameterName = "@Id_wordtype", Value = Id_wordtype },
+                 new SqlParameter { ParameterName = "@Id_user", Value = Id_user },
+                 new SqlParameter { ParameterName = "@sWord", Value = sWord },
+                 new SqlParameter { ParameterName = "@sExample", Value = sExample },
+                 new SqlParameter { ParameterName = "@sDefinition", Value = sDefinition },
+                 new SqlParameter { ParameterName = "@sWordTrans", Value = sWordTrans },
+                 new SqlParameter { ParameterName = "@id", Value = id },
+			};
+        this.Database.ExecuteSqlRaw(sql, parameters.ToArray());
+    }
+    public void deleteWord(int idWord)
+    {
+        Console.WriteLine(idWord);
+        string sql = "EXECUTE deleteWord @idword";
+        List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                 new SqlParameter { ParameterName = "@idword", Value = idWord },
+            };
+        this.Database.ExecuteSqlRaw(sql, parameters.ToArray());
     }
 }

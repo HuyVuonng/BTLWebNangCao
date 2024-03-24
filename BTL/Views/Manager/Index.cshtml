@@ -2,6 +2,226 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-	ViewData["Title"] = "Manager Page";
+    ViewData["Title"] = "Manager Word";
 }
-<p>Manager page</p>
+
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<TblWord>
+
+<div class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-lg border border-gray-300">
+    <div class="flex items-center justify-center mb-4">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-blue-600" id="add">ADD NEW WORD</h1>
+        </div>
+    </div>
+    <div class="grid grid-cols-2 gap-6">
+        <div class="flex flex-col">
+            <div class="mb-4">
+                <label for="Language" class="block mb-2 text-sm font-medium">LANGUAGE :</label>
+                <select id="Language" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="disable" disabled selected>Chọn Language</option>
+                    <option value="1">Tiếng Anh</option>
+                    <option value="2">Tiếng Việt</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="WordTypes" class="block mb-2 text-sm font-medium">WORDTYPE :</label>
+                <select id="WordTypes" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="disable" disabled selected>Chọn WordType</option>
+                    <option value="1">Động từ</option>
+                    <option value="2">Danh từ</option>
+                    <option value="3">Tính từ</option>
+                    <option value="4">Trạng từ</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label for="Word" class="block mb-2 text-sm font-medium">WORD :</label>
+                <input type="text" id="Word" placeholder="Nhập từ thêm ..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="Definition" class="block mb-2 text-sm font-medium">DEFINITION :</label>
+                <input type="text" id="Definition" placeholder="Definition ..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+        </div>
+        <div class="flex flex-col">
+            <div class="mb-4">
+                <label for="Languagetrans" class="block mb-2 text-sm font-medium">LANGUAGE TRANS :</label>
+                <select id="Languagetrans" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="disable" disabled selected>Chọn Language trans</option>
+                    <option value="2">Tiếng Việt</option>
+                    <option value="1">Tiếng Anh</option>
+                </select>
+            </div>
+            <div class="mb-4" >
+                <label for="Id_user" class="block mb-2 text-sm font-medium">ID_USER :</label>
+                <input type="text" id="Id_user" disabled readonly placeholder="Nhập Id_user..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="Example" class="block mb-2 text-sm font-medium">EXAMPLE :</label>
+                <input type="text" id="Example" placeholder="Example ..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" >
+            </div>
+            <div class="mb-4">
+                <label for="WordTrans" class="block mb-2 text-sm font-medium">WORDTRANS :</label>
+                <input type="text" id="WordTrans" placeholder="Nhập Wordtrans ..." class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+        </div>
+    </div>
+    <div class="button text-center mt-6">
+        <button id="btnAdd" onclick="dataword()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add</button>
+        <button id="clear" onclick="clearData()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Clear</button>
+    </div>
+</div>
+
+<form asp-action="getwordbyWord" asp-controller="Manager" method="post">
+    <div class="searchword">
+        <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                </svg>
+            </div>
+            <input type="search" name="Word" id="search" class="block w-full p-4 ps-5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" />
+            <button type="submit" value="search" class="text-white  translate-y-[-20%] absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+        </div>
+    </div>
+    <div class="flex items-center justify-center mb-4">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-blue-600 dark:focus:ring-blue-800 cursor-pointer" onclick="getword()">WORD LIST</h1>
+        </div>
+    </div>
+    <div class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md bg-clip-border rounded-xl">
+        <table class="w-full text-left table-auto min-w-max">
+            <thead>
+                <tr>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            ID
+                        </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Language
+                        </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            LanguageTrans
+                        </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Wordtypes
+                        </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            ID_User
+                        </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Word
+                        </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Example
+                        </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Definition
+                        </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            WordTrans
+                        </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                            Date
+                        </p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count > 0)
+                {
+                    @foreach (TblWord w in Model)
+                    {
+                        <tr class="even:bg-blue-gray-50/50">
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="id">
+                                    @w.Id
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="language">
+                                    @w.IdLanguage
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="languageTrans">
+                                    @w.IdLanguageTrans
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="wordtypes">
+                                    @w.IdWordtype
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="idUser">
+                                    @w.IdUser
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="word">
+                                    @w.SWord
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="example">
+                                    @w.SExample
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="definition">
+                                    @w.SDefinition
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="wordTrans">
+                                    @w.sWordTrans
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="wordTrans">
+                                    @w.sTime
+                                </p>
+                            </td>
+                            <td class="p-4">
+                                <a onclick="getWordById(event , @w.Id)" id="edit" data-id="'+ @w.Id +'" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a onclick="deleteWord(@w.Id)" class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+                @if (Model.Count == 0)
+                {
+                    <tr class="h-[300px]">
+                        <td colspan="4" class="text-center font-[500] text-[20px]">Không có từ nào trong cơ sở dữ liệu</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>
+<script>
+
+
+</script>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))

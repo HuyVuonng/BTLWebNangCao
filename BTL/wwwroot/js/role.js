@@ -22,5 +22,6 @@ if (roleLogin === "CTV") {
 
 LogoutBtn.addEventListener('click', () => {
     localStorage.removeItem("role")
+    localStorage.removeItem("id")
     window.location.reload();
 })

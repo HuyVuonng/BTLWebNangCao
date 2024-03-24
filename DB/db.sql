@@ -225,12 +225,15 @@ exec getHistorySearchUser 1
 
 
 go
-create proc addNewWord
+
+alter table tblWord
+add sTime datetime
+alter proc addNewWord
  @Id_Language int,@Id_Language_trans int, @Id_wordtype int, @Id_user int, @sWord NVARCHAR(255),@sExample NVARCHAR(255), @sDefinition NVARCHAR(255), @sWordTrans NVARCHAR(255)   
 AS
 BEGIN
-   insert into tblWord(Id_Language, Id_Language_trans, Id_wordtype, Id_user, sWord, sExample, sDefinition, sWordTrans)
-   values(@Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition,@sWordTrans)
+   insert into tblWord(Id_Language, Id_Language_trans, Id_wordtype, Id_user, sWord, sExample, sDefinition, sWordTrans, sTime)
+   values(@Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition,@sWordTrans, GETDATE())
 END;
 
 exec getHistorySearchUser 1
@@ -273,3 +276,51 @@ where tblUser.sEmail like '%'+ @email+ '%' and tblUser.sRole like '%'+ @role+ '%
 END;
 
 exec filterUser 'd',''
+
+drop proc getwordbyid
+create proc getwordbyid
+@id int
+as
+begin
+select * from tblWord
+where ID = @id
+end
+
+create proc deleteWord
+@idword int
+AS
+BEGIN
+delete tblWord
+where tblWord.Id = @idword
+END;
+exec deleteWord 'Nói'
+
+create proc editWord
+@id int, @Id_Language int,@Id_Language_trans int, @Id_wordtype int, @Id_user int,
+@sWord NVARCHAR(255),@sExample NVARCHAR(255), @sDefinition NVARCHAR(255), @sWordTrans NVARCHAR(255)   
+as
+begin
+update tblWord
+set Id_Language=@Id_Language ,
+	Id_Language_trans = @Id_Language_trans,
+	Id_wordtype = @Id_wordtype,
+	Id_user = @Id_user,
+	sWord = @sWord ,
+	sExample = @sExample ,
+	sDefinition = @sDefinition ,
+	sWordTrans = @sWordTrans,
+	sTime= GetDate()
+where  tblWord.Id=@id
+end;
+
+update tblWord
+set sTime= GetDate()
+
+create proc searchword 
+@word  nvarchar(50)
+AS
+BEGIN
+select *
+from tblWord
+where tblWord.sWord like '%'+ @word+ '%' 
+END;
