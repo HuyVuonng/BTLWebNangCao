@@ -31,7 +31,7 @@ public partial class DictionaryContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=MSI;Initial Catalog=Dictionary;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
+        => optionsBuilder.UseSqlServer("Data Source=LAPTOP-8QHLQ8K7\\SQLEXPRESS;Initial Catalog=Dictionary;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -232,14 +232,14 @@ public partial class DictionaryContext : DbContext
     {
         return this.TblWords.FromSqlRaw("select * from tblWord ORDER BY sTime DESC;");
     }
-    public IQueryable<TblWord> getWordbyid(int ID)
+    public IQueryable<TblWord> searchword(string word)
     {
-        SqlParameter iD = new SqlParameter("@id", ID);
-        return this.TblWords.FromSqlRaw("EXECUTE getwordbyid @id", iD);
+        SqlParameter Word = new SqlParameter("@word", word);
+        return this.TblWords.FromSqlRaw("EXECUTE searchword @word", Word);
     }
     public void editword(int id, int? Id_Language, int? Id_Language_trans, int? Id_wordtype, int? Id_user, string? sWord, string? sExample, string? sDefinition, string? sWordTrans)
     {
-        string sql = "EXECUTE editWord @Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition, @sWordTrans,@id";
+        string sql = "EXECUTE editWord @id, @Id_Language,@Id_Language_trans,@Id_wordtype,@Id_user,@sWord,@sExample,@sDefinition, @sWordTrans";
         List<SqlParameter> parameters = new List<SqlParameter>
             {
                  new SqlParameter { ParameterName = "@Id_Language", Value = Id_Language },

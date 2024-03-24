@@ -16,5 +16,8 @@
 
         public string SDefinition { get; set; }
         public string SWordTrans { get; set; }
-    }
+		public DateTime? sTime { get; set; }
+
+
+	}
 }

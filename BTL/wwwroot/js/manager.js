@@ -114,6 +114,7 @@ function dataword() {
         console.log(result);
     }
     else {
+        console.log(data)
         xhttp.open("POST", "/manager/word/edit", true);
         xhttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");
         xhttp.send(JSON.stringify(data));

@@ -83,8 +83,7 @@ const searchClick = () => {
   xhttp.onreadystatechange = () => {
     if (xhttp.readyState === 4 && xhttp.status === 200) {
       result = JSON.parse(xhttp.responseText);
-        /*handleSearch(result);*/
-        console.log(result);
+        handleSearch(result);
     }
   };
   xhttp.open(
@@ -96,7 +95,7 @@ const searchClick = () => {
 };
 
 const handleSearch = async (result) => {
-  if (result.length > 0) {
+    if (result.length > 0) {
     word.innerHTML = result[0].sWord;
     if (selectLanguageTran.value === "1" && selectLanguage.value === "1") {
       console.log("here");
@@ -113,7 +112,7 @@ const handleSearch = async (result) => {
     example.innerHTML = result[0].sExample;
     wordTrans.innerHTML = result[0].sWordTrans;
   } else if (selectLanguage.value === "1" && selectLanguageTran.value === "1") {
-    const wordSearch = searchInput.value;
+        const wordSearch = searchInput.value;
     const res = await fetch(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${wordSearch}`
     );

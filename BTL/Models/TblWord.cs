@@ -23,7 +23,7 @@ public partial class TblWord
     public string? SDefinition { get; set; }
     public string? sWordTrans { get; set; }
 
-    public DateOnly? sTime { get; set; }
+    public DateTime? sTime { get; set; }
 
     public virtual TblLanguage? IdLanguageNavigation { get; set; }
 
