@@ -232,10 +232,10 @@ public partial class DictionaryContext : DbContext
     {
         return this.TblWords.FromSqlRaw("select * from tblWord ORDER BY sTime DESC;");
     }
-    public IQueryable<TblWord> getWordbyid(int ID)
+    public IQueryable<TblWord> searchword(string word)
     {
-        SqlParameter iD = new SqlParameter("@id", ID);
-        return this.TblWords.FromSqlRaw("EXECUTE getwordbyid @id", iD);
+        SqlParameter Word = new SqlParameter("@word", word);
+        return this.TblWords.FromSqlRaw("EXECUTE searchword @word",Word );
     }
     public void editword(int id, int? Id_Language, int? Id_Language_trans, int? Id_wordtype, int? Id_user, string? sWord, string? sExample, string? sDefinition, string? sWordTrans)
     {

@@ -26,11 +26,11 @@ namespace BTL.Controllers
         }
         [HttpPost]
         [Route("/manager/word")]
-        public IActionResult getwordbyid(int id, int page = 1)
+        public IActionResult getwordbyid(string Word, int page = 1)
         {
             int pageSize = 10;
             int pageNumber = page;
-            PagedList<TblWord> word = new (this._dBDic.getWordbyid(id).ToList(), pageNumber, pageSize);
+            PagedList<TblWord> word = new (this._dBDic.searchword(Word).ToList(), pageNumber, pageSize);
             return View("Index", word);
         }
         [HttpPost]
