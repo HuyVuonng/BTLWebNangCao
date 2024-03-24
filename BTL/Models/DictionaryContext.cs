@@ -233,7 +233,6 @@ public partial class DictionaryContext : DbContext
         return this.TblWords.FromSqlRaw("select * from tblWord ORDER BY sTime DESC;");
     }
     public IQueryable<TblWord> searchword(string word)
-    public IQueryable<TblWord> searchword(string word)
     {
         SqlParameter Word = new SqlParameter("@word", word);
         return this.TblWords.FromSqlRaw("EXECUTE searchword @word", Word);

@@ -4158,11 +4158,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\New folder (2)\\BTLWebNangCao\\BTL\\BTL.csproj",
+      "projectUniqueName": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\BTL.csproj",
       "projectName": "BTL",
-      "projectPath": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\New folder (2)\\BTLWebNangCao\\BTL\\BTL.csproj",
+      "projectPath": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\BTL.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\New folder (2)\\BTLWebNangCao\\BTL\\obj\\",
+      "outputPath": "D:\\CacKyHocDaiHoc\\Chuyen_Nganh\\LapTrinhWebNangCao\\BTL\\BTL\\BTL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
