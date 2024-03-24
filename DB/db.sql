@@ -286,7 +286,7 @@ select * from tblWord
 where ID = @id
 end
 
-alter proc deleteWord
+create proc deleteWord
 @idword int
 AS
 BEGIN
@@ -300,7 +300,6 @@ create proc editWord
 @sWord NVARCHAR(255),@sExample NVARCHAR(255), @sDefinition NVARCHAR(255), @sWordTrans NVARCHAR(255)   
 as
 begin
-set nocount on;
 update tblWord
 set Id_Language=@Id_Language ,
 	Id_Language_trans = @Id_Language_trans,

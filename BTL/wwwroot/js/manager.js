@@ -57,10 +57,10 @@ function dataword() {
     const word = document.getElementById('Word').value;
     const definition = document.getElementById('Definition').value;
     const languageTrans = document.getElementById('Languagetrans').value;
-    const idUser = document.getElementById('Id_user').value;
+    const idUser = localStorage.getItem('id');
     const example = document.getElementById('Example').value;
     const wordTrans = document.getElementById('WordTrans').value;
-    const idRow = document.getElementById('edit').getAttribute('data-id');
+    const idRow = document.getElementById('edit').getAttribute('data-id');;
     if (!language || !idWordType || !word || !definition || !languageTrans || !idUser || !example || !wordTrans) {
         alert('Bạn chưa nhập đủ dữ liệu!');
         return; 
@@ -114,7 +114,6 @@ function dataword() {
         console.log(result);
     }
     else {
-        console.log(data)
         xhttp.open("POST", "/manager/word/edit", true);
         xhttp.setRequestHeader("Content-Type", "application/json; charset=utf-8");
         xhttp.send(JSON.stringify(data));
@@ -167,6 +166,7 @@ function getword(){
 }
 
 const deleteWord = (id) => {
+    console.log(id)
     const datadelete = {
         Id: id,
     };

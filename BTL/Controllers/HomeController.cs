@@ -98,7 +98,7 @@ namespace BTL.Controllers
                 TempData["SuccessfullyLogIn"] = "Đăng nhập thành công";
                 TempData["role"] = $"{us.SRole}";
                 TempData["id"] = $"{us.Id}";
-                return RedirectToAction("Index", "Home");
+				return RedirectToAction("Index", "Home");
             }
 /*            else
             {

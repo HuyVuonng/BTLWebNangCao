@@ -256,7 +256,7 @@ public partial class DictionaryContext : DbContext
     }
     public void deleteWord(int idWord)
     {
-
+        Console.WriteLine(idWord);
         string sql = "EXECUTE deleteWord @idword";
         List<SqlParameter> parameters = new List<SqlParameter>
             {
