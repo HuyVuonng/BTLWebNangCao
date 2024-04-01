@@ -158,67 +158,23 @@
                                 </p>
                             </td>
                             <td class="p-4">
-                                @switch (@w.IdLanguage)
-                                {
-                                    case 1:
-                                        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="language">
-                                            Tiếng Anh
-                                        </p>
-                                        break;
-                                    case 2:
-                                        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="language">
-                                            Tiếng Việt
-                                        </p>;
-                                        break;
-                                }
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="language">
+                                    @w.IdLanguage
+                                </p>
+                          
                                 
                             </td>
                             <td class="p-4">
 
-                                @switch (@w.IdLanguageTrans)
-                                {
-                                    case 1:
-                                        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="language">
-                                            Tiếng Anh
-                                        </p>
-                                        break;
-                                    case 2:
-                                        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="language">
-                                            Tiếng Việt
-                                        </p>
-                                        ;
-                                        break;
-                                }
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="languageTrans">
+                                    @w.IdLanguageTrans
+                                </p>
+                               
                             </td>
                             <td class="p-4">
-                                
-
-                                @switch (@w.IdWordtype)
-                                {
-                                    case 1:
-                                        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="wordtypes">
-                                            Động từ
-                                        </p>
-                                        break;
-                                    case 2:
-                                        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="language">
-                                            Danh từ
-                                        </p>
-                                        ;
-                                        break;
-                                    case 3:
-                                        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="language">
-                                            Tính từ
-                                        </p>
-                                        ;
-                                        break;
-                                    case 4:
-                                        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="language">
-                                            Trạng từ
-                                        </p>
-                                        ;
-                                        break;
-                                }
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="wordtypes">
+                                    @w.IdWordtype
+                                </p>
                             </td>
                             <td class="p-4">
                                 <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="idUser">
@@ -246,7 +202,7 @@
                                 </p>
                             </td>
                             <td class="p-4">
-                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="wordTrans">
+                                <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900" id="time">
                                     @w.sTime
                                 </p>
                             </td>
